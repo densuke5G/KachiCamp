@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>KachiCamp</title>
+    <title>徒歩キャン△</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,6 +12,12 @@
   </head>
 
   <body>
+    <header>
+      <%= render 'layouts/header' %>
+    </header>
     <%= yield %>
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
   </body>
 </html>
