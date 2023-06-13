@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
+
   namespace :admin do
     root to: 'campgrounds#index'
     resources :users, only: [:index, :show, :update]
@@ -18,7 +22,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
-    resources :users, only: [:show, :edit, :update]
+    resource :users, only: [:show, :edit, :update]
     resources :campgrounds, only: [:new, :index, :show, :create] do
       collection do
         get 'map'
