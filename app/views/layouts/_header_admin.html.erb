@@ -1,7 +1,7 @@
 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
   <button type="button" class="btn btn-vivid">
     <li>
-      <%= link_to admin_root_path, class: 'nav-link text-white' do %>
+      <%= link_to admin_root_path, class: 'nav-link text-primary' do %>
         <i class=""></i> キャンプ場一覧
       <% end %>
     </li>
@@ -15,13 +15,13 @@
   </button>
   <button type="button" class="btn btn-darkgleen">
     <li>
-      <%=  link_to admin_reviews_path, class: 'nav-link text-white' do %>
+      <%=  link_to admin_reviews_path, class: 'nav-link text-primary' do %>
         <i class=""></i> レビュー一覧
       <% end %>
     </li>
   </button>
   <button type="button" class="btn btn-cream">
-      <%= button_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>
+      <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>
         <i class=""></i> ログアウト（管理者）
       <% end %>
   </button>
