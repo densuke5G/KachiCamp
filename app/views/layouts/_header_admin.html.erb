@@ -1,0 +1,28 @@
+<div class="btn-group" role="group" aria-label="Basic mixed styles example">
+  <button type="button" class="btn btn-vivid">
+    <li>
+      <%= link_to admin_root_path, class: 'nav-link text-primary' do %>
+        <i class=""></i> キャンプ場一覧
+      <% end %>
+    </li>
+  </button>
+  <button type="button" class="btn btn-pink">
+    <li>
+      <%=  link_to admin_users_path, class: 'nav-link text-dark' do %>
+        <i class=""></i> 会員一覧
+      <% end %>
+    </li>
+  </button>
+  <button type="button" class="btn btn-darkgleen">
+    <li>
+      <%=  link_to admin_reviews_path, class: 'nav-link text-primary' do %>
+        <i class=""></i> レビュー一覧
+      <% end %>
+    </li>
+  </button>
+  <button type="button" class="btn btn-cream">
+      <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>
+        <i class=""></i> ログアウト（管理者）
+      <% end %>
+  </button>
+</div>

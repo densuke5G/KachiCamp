@@ -1,0 +1,28 @@
+<div class="btn-group" role="group" aria-label="Basic mixed styles example">
+    <button type="button" class="btn btn-pink">
+      <li>
+        <%=  link_to map_campgrounds_path, class: 'nav-link text-dark' do %>
+          <i class="fas fa-solid fa-bars"></i> 地図から探す
+        <% end %>
+      </li>
+    </button>
+    <button type="button" class="btn btn-darkgleen">
+      <li>
+        <%=  link_to new_campground_path, class: 'nav-link text-darkgleen' do %>
+          <i class="fas fa-solid fa-cart-arrow-down"></i> 情報提供
+        <% end %>
+      </li>
+    </button>
+    <button type="button" class="btn btn-vivid">
+      <li>
+        <%=  link_to users_path, class: 'nav-link text-primary' do %>
+          <i class="fas fa-solid fa-user"></i> マイページ
+        <% end %>
+      </li>
+    </button>
+    <button type="button" class="btn btn-deep">
+        <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-primary' do %>
+          <i class="fas fa-solid fa-arrow-right"></i> ログアウト
+        <% end %>
+    </button>
+</div>
