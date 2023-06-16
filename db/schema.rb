@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2023_06_12_075804) do
   end
 
   create_table "campgrounds", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.string "name", null: false
     t.text "description"
     t.string "address", null: false
@@ -63,12 +63,12 @@ ActiveRecord::Schema.define(version: 2023_06_12_075804) do
     t.string "business_hours"
     t.string "check_in"
     t.string "check_out"
-    t.string "station_line", null: false
-    t.string "station_name", null: false
-    t.integer "station_walk", null: false
-    t.string "busstop_line", null: false
-    t.string "busstop_name", null: false
-    t.integer "busstop_walk", null: false
+    t.string "station_line"
+    t.string "station_name"
+    t.integer "station_walk"
+    t.string "busstop_line"
+    t.string "busstop_name"
+    t.integer "busstop_walk"
     t.integer "is_confirmed", default: 0, null: false
     t.string "rejection_reason"
     t.datetime "created_at", precision: 6, null: false

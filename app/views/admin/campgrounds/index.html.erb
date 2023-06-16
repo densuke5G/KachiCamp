@@ -1,2 +1,39 @@
-<h1>Admin::Campgrounds#index</h1>
-<p>Find me in app/views/admin/campgrounds/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h3>商品一覧
+        <%= link_to "＋",new_admin_campground_path, class: 'btn float-right rounded-circle p-0 ',
+        style: 'width: 2rem; height: 2rem; display: flex; justify-content: center; align-campgrounds: center; box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);' %>
+      </h3>
+      <table class="table table-hover table-light table-borderless">
+        <thead>
+            <tr>
+              <th>キャンプ場名</th>
+              <th>住所</th>
+              <th>タグ</th>
+              <th>レビュー件数</th>
+              <th>承認ステータス</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @campgrounds.each do |campground| %>
+            <tr>
+              <td><%= link_to "#{campground.name}", admin_campground_path(campground.id) %></td>
+              <td><%= campground.address %></td>
+              <td></td>
+              <td></td>
+              <% if campground.is_confirmed = 0 %>
+                <td class="text-secondary">保留中</td>
+              <% elsif campground.is_confirmed = 1 %>
+                <td class="text-success">承認済</td>
+              <% elsif %>
+                <td class="text-danger">却下済</td>
+              <% end %>
+            </tr>
+            <% end %>
+            <%#= paginate @campgrounds %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
