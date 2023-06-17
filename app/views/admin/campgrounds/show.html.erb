@@ -26,6 +26,15 @@
           </tr>
 
           <tr>
+            <th>タグ</th>
+              <td>
+                <% @campground_tags.each do |tag| %>
+                  <i class="fas fa-tag"><%= tag.tag_name %></i>
+                <% end %>
+              </td>
+          </tr>
+
+          <tr>
             <th>説明</th>
               <td>
                 <%= @campground.description %>

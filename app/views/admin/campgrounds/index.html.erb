@@ -22,7 +22,9 @@
             <tr>
               <td><%= link_to "#{campground.name}", admin_campground_path(campground.id) %></td>
               <td><%= campground.address %></td>
-              <td></td>
+              <td>
+                <i class="fas fa-tag"><%= campground.tags.map(&:tag_name).join(', ') %></i>
+              </td>
               <td></td>
               <!--投稿の承認ステータスによって分岐表示-->
               <% if campground.is_confirmed = 0 %>
