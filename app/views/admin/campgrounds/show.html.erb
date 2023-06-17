@@ -1,2 +1,98 @@
-<h1>Admin::Campgrounds#show</h1>
-<p>Find me in app/views/admin/campgrounds/show.html.erb</p>
+<div class="container">
+  <div class="row p-1">
+    <h3>キャンプ場詳細</h3>
+  </div>
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <%= link_to "編集する", edit_admin_campground_path(@campground.id), class: "btn btn-success" %>
+      <%= link_to "削除する", admin_campground_path(@campground.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+      <table class="table table-light table-borderless">
+          <tr>
+            <th>承認ステータス</th>
+              <% if @campground.is_confirmed = 0 %>
+                <td class="text-secondary">保留中</td>
+              <% elsif @campground.is_confirmed = 1 %>
+                <td class="text-success">承認済</td>
+              <% elsif %>
+                <td class="text-danger">却下済</td>
+              <% end %>
+          </tr>
+
+          <tr>
+            <th>キャンプ場名</th>
+              <td>
+                <%= @campground.name %>
+              </td>
+          </tr>
+
+          <tr>
+            <th>説明</th>
+              <td>
+                <%= @campground.description %>
+              </td>
+          </tr>
+
+          <tr>
+            <th>住所</th>
+              <td>
+                <%= @campground.address %>
+              </td>
+          </tr>
+
+          <tr>
+            <th>電話番号</th>
+              <td>
+                <%= @campground.phone_number %>
+              </td>
+          </tr>
+
+          <tr>
+            <th>営業時間</th>
+              <td>
+                <%= @campground.business_hours %>
+              </td>
+          </tr>
+
+          <tr>
+            <th>チェックイン</th>
+              <td>
+                <%= @campground.check_in %>
+              </td>
+          </tr>
+
+          <tr>
+            <th>チェックアウト</th>
+              <td>
+                <%= @campground.check_out %>
+              </td>
+          </tr>
+
+          <tr>
+            <th>最寄り駅</th>
+              <td>
+                <%= @campground.station_line %>線
+                <%= @campground.station_name %>駅
+            徒歩<%= @campground.station_walk %>分
+              </td>
+          </tr>
+
+          <tr>
+            <th>最寄りバス停</th>
+              <td>
+                <%= @campground.busstop_line %>
+                <%= @campground.busstop_name %>バス停
+            徒歩<%= @campground.busstop_walk %>分
+              </td>
+          </tr>
+
+        </table>
+    </div>
+    <div class="col-md-2 mx-auto">
+      <% if @campground.image.attached? %>
+        <% @campground.image.each do |image| %>
+          <%= image_tag image, size:"200x200" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

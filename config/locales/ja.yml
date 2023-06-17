@@ -1,0 +1,7 @@
+  ja:
+    enums:
+      campground:
+        is_confirmed:
+          pending: "保留中"
+          confirmed: "承認済"
+          rejected: "却下済"
