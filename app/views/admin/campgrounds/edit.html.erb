@@ -1,2 +1,120 @@
-<h1>Admin::Campgrounds#edit</h1>
-<p>Find me in app/views/admin/campgrounds/edit.html.erb</p>
+<div class="container">
+  <div class="row p-1">
+    <h3>キャンプ場詳細</h3>
+  </div>
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <%= form_with model: @campground, url: admin_campground_path, method: :patch, class: 'new_campground', local: true do |f| %>
+        <div class="actions p-1">
+          <%= f.submit "変更を保存" ,class: 'btn btn-sm btn-success' %>
+        </div>
+
+        <table class="table table-light table-borderless">
+          <tr>
+            <th>承認ステータス</th>
+              <td>
+                <div class="select">
+                  <%= f.select :is_confirmed, Campground.is_confirmeds.keys.map {|k| [I18n.t("enums.campground.is_confirmed.#{k}"), k]} %>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+            <th>キャンプ場画像</th>
+              <td>
+                <div class="field">
+                  <%= f.file_field :image, multiple: true, autofocus: true, accept: "image/*" %>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+            <th>キャンプ場名</th>
+              <td>
+                <div class="field">
+                  <%= f.text_field :name, autofocus: true, class: "" %>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+            <th>説明</th>
+              <td>
+                <div class="field">
+                  <%= f.text_area :description, autofocus: true, placeholder: "キャンプ場の説明", class: "width:100%" %>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+            <th>住所</th>
+              <td>
+                <div class="field">
+                  <%= f.text_field :address, autofocus: true, placeholder: "東京都港区六本木３丁目２−１", class: "" %>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+            <th>電話番号</th>
+              <td>
+                <div class="field">
+                  <%= f.text_field :phone_number, autofocus: true, placeholder: "例：XXX-XXXX-XXX", class: "" %>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+            <th>営業時間</th>
+              <td>
+                <div class="field">
+                  <%= f.text_field :business_hours, autofocus: true, placeholder: "例：XX:XX~XX:XX", class: "" %>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+            <th>チェックイン</th>
+              <td>
+                <div class="field">
+                  <%= f.text_field :check_in, autofocus: true, placeholder: "例：XX:XX~", class: "" %>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+            <th>チェックアウト</th>
+              <td>
+                <div class="field">
+                  <%= f.text_field :check_out, autofocus: true, placeholder: "例：~XX:XX", class: "" %>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+            <th>最寄り駅</th>
+              <td>
+                <div class="field">
+                  <%= f.text_field :station_line, autofocus: true, placeholder: "JR青梅", class: "" %><%= f.label :"線" %>
+                  <%= f.text_field :station_name, autofocus: true, placeholder: "駅名", class: "" %><%= f.label :"駅" %><br>
+                  <%= f.label :"徒歩" %><%= f.text_field :station_walk, autofocus: true, placeholder: "", class: "" %><%= f.label :"分" %>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+            <th>最寄りバス停</th>
+              <td>
+                <div class="field">
+                  <%= f.text_field :busstop_line, autofocus: true, placeholder: "バス業者", class: "" %>
+                  <%= f.text_field :busstop_name, autofocus: true, placeholder: "バス停名", class: "" %><%= f.label :"バス停" %><br>
+                  <%= f.label :"徒歩" %><%= f.text_field :busstop_walk, autofocus: true, placeholder: "", class: "" %><%= f.label :"分" %>
+                </div>
+              </td>
+          </tr>
+        </table>
+
+      <% end %>
+    </div>
+  </div>
+</div>

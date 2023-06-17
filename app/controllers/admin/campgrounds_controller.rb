@@ -8,15 +8,30 @@ class Admin::CampgroundsController < ApplicationController
   end
 
   def show
+    @campground = Campground.find(params[:id])
   end
 
   def edit
+    @campground = Campground.find(params[:id])
   end
 
   def create
     campground = Campground.new(campground_params)
 
     campground.save
+    redirect_to admin_campgrounds_path
+  end
+
+  def update
+    campground = Campground.find(params[:id])
+
+    campground.update(campground_params)
+    redirect_to admin_campground_path(campground.id)
+  end
+
+  def destroy
+    Campground.find(params[:id]).destroy
+
     redirect_to admin_campgrounds_path
   end
 
