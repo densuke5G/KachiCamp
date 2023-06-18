@@ -1,2 +1,49 @@
-<h1>Public::Reviews#new</h1>
-<p>Find me in app/views/public/reviews/new.html.erb</p>
+<div class="container">
+  <div class="row p-1">
+    <h2>レビュー投稿</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row mb-2">
+        <div class="col-sm-3 col-5 text-left pl-2">
+          <p>タイトル</p>
+        </div>
+        <div class="col-sm-7 col-5 text-left px-0">
+          <%= f.text_field :title, autofocus: true, class: "" %>
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-sm-3 col-5 text-left pl-2">
+          <p>本文</p>
+        </div>
+        <div class="col-sm-7 col-5 text-left px-0">
+          <%= f.text_area :body, autofocus: true, class: "" %>
+        </div>
+      </div>
+
+      <div class="form-group row" id="star">
+        <%= f.label :star,'評価 ', class:'col-md-3 col-form-label' %>
+        <%= f.hidden_field :star, id: :review_star %>
+        <%= f.hidden_field :campground_id, :value => params[:campground_id] %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "投稿" ,class: 'btn btn-sm btn-success' %>
+      </div>
+
+      <!--retyを用いたjavascript-->
+      <script>
+      $('#star').raty({
+        size     : 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+
+        scoreName: 'review[star]',
+        half: false,
+      });
+      </script>
+
+    </div>
+  </div>
+</div>
