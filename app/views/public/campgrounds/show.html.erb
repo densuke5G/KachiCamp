@@ -111,11 +111,11 @@
   <div class="row p-1">
     <div class="col-sm-12 col-8">
       <h3>レビュー</h3>
-      
-      <% if user_signed_in? %>
+
+      <%# if user_signed_in? %>
       <!--URLにキャンプ場IDを仕込んで送る-->
       <%= link_to "レビューを投稿する", new_review_path(campground_id: @campground.id), class: "btn btn-success mt-2" %>
-      <% end %>
+      <%# end %>
     </div>
   </div>
 </div>
