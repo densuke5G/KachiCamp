@@ -20,6 +20,7 @@ class CreateCampgrounds < ActiveRecord::Migration[6.1]
       t.integer  :is_confirmed,    null: false, default: 0
       t.string   :rejection_reason
       t.float    :rating
+      t.string   :camp_url
 
       t.timestamps
     end

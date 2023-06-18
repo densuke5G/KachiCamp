@@ -5,7 +5,7 @@ class Admin::CampgroundsController < ApplicationController
 
   def index
     @campgrounds = Campground.all
-    @tag_list = Tag.all
+
   end
 
   def show
@@ -20,7 +20,7 @@ class Admin::CampgroundsController < ApplicationController
 
   def create
     campground = Campground.new(campground_params)
-    campground.is_confirmed = confirmed
+    campground.is_confirmed = 1
 
     # タグを,で区切り配列にする
     tag_list = params[:campground][:tag_name].split(',')
@@ -58,6 +58,8 @@ class Admin::CampgroundsController < ApplicationController
     redirect_to admin_campgrounds_path
   end
 
+
+  private
 
   def campground_params
     params.require(:campground).permit(:user_id, :name, :description, :address, :latitude, :longitude, :phone_number, :business_hours,

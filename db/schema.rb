@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2023_06_12_075804) do
     t.integer "is_confirmed", default: 0, null: false
     t.string "rejection_reason"
     t.float "rating"
+    t.string "camp_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
