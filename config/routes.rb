@@ -29,9 +29,10 @@ Rails.application.routes.draw do
         get 'thanks'
         get 'status'
       end
+      resource :favorites, only: [:index, :create, :destroy]
     end
     resources :reviews, only: [:new, :index, :create]
-    resources :favorites, only: [:index, :create, :destroy]
+    
     resources :contacts, only: [:new]
 
   end
