@@ -14,6 +14,7 @@ class Public::CampgroundsController < ApplicationController
   def show
     @campground = Campground.find(params[:id])
     @campground_tags = @campground.tags
+    @reviews = Review.where(campground_id: @campground.id)
   end
 
   def thanks

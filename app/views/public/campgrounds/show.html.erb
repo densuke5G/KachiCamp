@@ -111,11 +111,48 @@
   <div class="row p-1">
     <div class="col-sm-12 col-8">
       <h3>レビュー</h3>
-
       <%# if user_signed_in? %>
       <!--URLにキャンプ場IDを仕込んで送る-->
       <%= link_to "レビューを投稿する", new_review_path(campground_id: @campground.id), class: "btn btn-success mt-2" %>
       <%# end %>
     </div>
   </div>
+
+  <% @reviews.each do |review| %>
+    <div class="row mb-2">
+      <div class="col-sm-12 col-md-8">
+        <div class="card shadow bg-white rounded my-2">
+          <div class="row mb-2">
+            <div class="col-sm-6 col-md-3 ml-1">
+              <h5><%= review.title %></h5>
+              <!--JavaScript呼び出し-->
+              <div id="star-rate<%= review.id %>"></div>
+              <p><%= review.star %> / 5.0</p>
+              <p><%= review.user.name %> さん</p>
+            </div>
+            <div class="col-sm-6 col-md-5">
+              <p><%= review.body %></p>
+            </div>
+
+            <script>
+
+            let elem = document.querySelector('#star-rate<%= review.id %>');
+            let opt = {
+
+              size     : 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+
+              readOnly: true,
+              score: <%= review.star %>,
+              half: false,
+            };
+            raty(elem, opt);
+
+            </script>
+          </div>
+         </div>
+      </div>
+    </div>
+  <% end %>
 </div>

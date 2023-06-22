@@ -1,2 +1,49 @@
-<h1>Admin::Reviews#index</h1>
-<p>Find me in app/views/admin/reviews/index.html.erb</p>
+<div class="container">
+  <div class="row p-1">
+    <h3>レビュー一覧</h3>
+  </div>
+  <div class="row">
+    <div class="col-md-10">
+      <% @reviews.each do |review| %>
+        <div class="row mb-2">
+          <div class="col-sm-12 col-md-8">
+            <div class="card shadow bg-white rounded my-2">
+              <div class="row mb-2">
+                <div class="col-sm-6 col-md-3 ml-1">
+                  <h5><%= review.title %></h5>
+                  <!--JavaScript呼び出し-->
+                  <div id="star-rate<%= review.id %>"></div>
+                  <p><%= review.star %> / 5.0</p>
+                  <p><%= link_to "#{review.user.name}さん", admin_user_path(review.user.id) %></p>
+                </div>
+                <div class="col-sm-6 col-md-5">
+                  <p><%= review.body %></p>
+                </div>
+
+                <script>
+
+                let elem = document.querySelector('#star-rate<%= review.id %>');
+                let opt = {
+
+                  size     : 36,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+
+                  readOnly: true,
+                  score: <%= review.star %>,
+                  half: false,
+                };
+                raty(elem, opt);
+
+                </script>
+              </div>
+             </div>
+            <div class="row ml-2">
+              <%= link_to "レビューを削除する", admin_review_path(review.id), method: :delete, class: "btn btn-danger mt-2" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
