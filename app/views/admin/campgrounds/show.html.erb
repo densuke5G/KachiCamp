@@ -6,95 +6,112 @@
     <div class="col-md-8 mx-auto">
       <%= link_to "編集する", edit_admin_campground_path(@campground.id), class: "btn btn-success" %>
       <%= link_to "削除する", admin_campground_path(@campground.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
-      <table class="table table-light table-borderless">
-          <tr>
-            <th>承認ステータス</th>
-              <% if @campground.is_confirmed = 0 %>
-                <td class="text-secondary">保留中</td>
-              <% elsif @campground.is_confirmed = 1 %>
-                <td class="text-success">承認済</td>
-              <% elsif %>
-                <td class="text-danger">却下済</td>
-              <% end %>
-          </tr>
 
-          <tr>
-            <th>キャンプ場名</th>
-              <td>
-                <%= @campground.name %>
-              </td>
-          </tr>
+      <div class="row mb-2">
+        <div class="col-sm-3 col-5 text-left pl-2">
+          <p>承認ステータス</p>
+        </div>
+        <div class="col-sm-7 col-5 text-left px-0">
+          <%= @campground.is_confirmed_i18n %>
+        </div>
+      </div>
 
-          <tr>
-            <th>タグ</th>
-              <td>
-                <% @campground_tags.each do |tag| %>
-                  <i class="fas fa-tag"><%= tag.tag_name %></i>
-                <% end %>
-              </td>
-          </tr>
+      <div class="row mb-2">
+        <div class="col-sm-3 col-5 text-left pl-2">
+          <p>キャンプ場名</p>
+        </div>
+        <div class="col-sm-7 col-5 text-left px-0">
+          <%= @campground.name %>
+        </div>
+      </div>
 
-          <tr>
-            <th>説明</th>
-              <td>
-                <%= @campground.description %>
-              </td>
-          </tr>
+      <div class="row mb-2">
+        <div class="col-sm-3 col-5 text-left pl-2">
+          <p>タグ</p>
+        </div>
+        <div class="col-sm-7 col-5 text-left px-0">
+          <% @campground_tags.each do |tag| %>
+            <i class="fas fa-tag"><%= tag.tag_name %></i>
+          <% end %>
+        </div>
+      </div>
 
-          <tr>
-            <th>住所</th>
-              <td>
-                <%= @campground.address %>
-              </td>
-          </tr>
+      <div class="row mb-2">
+        <div class="col-sm-3 col-5 text-left pl-2">
+          <p>説明</p>
+        </div>
+        <div class="col-sm-7 col-5 text-left px-0">
+          <%= @campground.description %>
+        </div>
+      </div>
 
-          <tr>
-            <th>電話番号</th>
-              <td>
-                <%= @campground.phone_number %>
-              </td>
-          </tr>
+      <div class="row mb-2">
+        <div class="col-sm-3 col-5 text-left pl-2">
+          <p>住所</p>
+        </div>
+        <div class="col-sm-7 col-5 text-left px-0">
+          <%= @campground.address %>
+        </div>
+      </div>
 
-          <tr>
-            <th>営業時間</th>
-              <td>
-                <%= @campground.business_hours %>
-              </td>
-          </tr>
+      <div class="row mb-2">
+        <div class="col-sm-3 col-5 text-left pl-2">
+          <p>電話番号</p>
+        </div>
+        <div class="col-sm-7 col-5 text-left px-0">
+          <%= @campground.phone_number %>
+        </div>
+      </div>
 
-          <tr>
-            <th>チェックイン</th>
-              <td>
-                <%= @campground.check_in %>
-              </td>
-          </tr>
+      <div class="row mb-2">
+        <div class="col-sm-3 col-5 text-left pl-2">
+          <p>営業時間</p>
+        </div>
+        <div class="col-sm-7 col-5 text-left px-0">
+          <%= @campground.business_hours %>
+        </div>
+      </div>
 
-          <tr>
-            <th>チェックアウト</th>
-              <td>
-                <%= @campground.check_out %>
-              </td>
-          </tr>
+      <div class="row mb-2">
+        <div class="col-sm-3 col-5 text-left pl-2">
+          <p>チェックイン</p>
+        </div>
+        <div class="col-sm-7 col-5 text-left px-0">
+          <%= @campground.check_in %>
+        </div>
+      </div>
 
-          <tr>
-            <th>最寄り駅</th>
-              <td>
-                <%= @campground.station_line %>線
-                <%= @campground.station_name %>駅
-            徒歩<%= @campground.station_walk %>分
-              </td>
-          </tr>
+      <div class="row mb-2">
+        <div class="col-sm-3 col-5 text-left pl-2">
+          <p>チェックアウト</p>
+        </div>
+        <div class="col-sm-7 col-5 text-left px-0">
+          <%= @campground.check_out %>
+        </div>
+      </div>
 
-          <tr>
-            <th>最寄りバス停</th>
-              <td>
-                <%= @campground.busstop_line %>
-                <%= @campground.busstop_name %>バス停
-            徒歩<%= @campground.busstop_walk %>分
-              </td>
-          </tr>
+      <div class="row mb-2">
+        <div class="col-sm-3 col-5 text-left pl-2">
+          <p>最寄り駅</p>
+        </div>
+        <div class="col-sm-7 col-5 text-left px-0">
+          <%= @campground.station_line %>線
+          <%= @campground.station_name %>駅
+      徒歩<%= @campground.station_walk %>分
+        </div>
+      </div>
 
-        </table>
+      <div class="row mb-2">
+        <div class="col-sm-3 col-5 text-left pl-2">
+          <p>最寄りバス停</p>
+        </div>
+        <div class="col-sm-7 col-5 text-left px-0">
+          <%= @campground.busstop_line %>
+          <%= @campground.busstop_name %>バス停
+      徒歩<%= @campground.busstop_walk %>分
+        </div>
+      </div>
+
     </div>
     <div class="col-md-2 mx-auto">
       <% if @campground.image.attached? %>

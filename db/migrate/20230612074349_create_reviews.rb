@@ -5,8 +5,8 @@ class CreateReviews < ActiveRecord::Migration[6.1]
       t.integer  :campground_id,  null: false
       t.string   :title,          null: false
       t.text     :body,           null: false
-      t.float    :score,          null: false
-      
+      t.integer  :star,           null: false
+
       t.timestamps
     end
   end

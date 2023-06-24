@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(version: 2023_06_12_075804) do
     t.integer "busstop_walk"
     t.integer "is_confirmed", default: 0, null: false
     t.string "rejection_reason"
+    t.float "rating"
+    t.string "camp_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -104,7 +106,7 @@ ActiveRecord::Schema.define(version: 2023_06_12_075804) do
     t.integer "campground_id", null: false
     t.string "title", null: false
     t.text "body", null: false
-    t.float "score", null: false
+    t.integer "star", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

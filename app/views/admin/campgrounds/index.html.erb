@@ -1,9 +1,8 @@
 <div class="container">
   <div class="row p-1">
-    <h3>キャンプ場一覧
-      <%= link_to "＋",new_admin_campground_path, class: 'btn float-right rounded-circle p-0 ',
+    <h3>キャンプ場一覧</h3>
+    <%= link_to "＋",new_admin_campground_path, class: 'btn float-right rounded-circle p-0 ml-auto',
       style: 'width: 2rem; height: 2rem; display: flex; justify-content: center; align-campgrounds: center; box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);' %>
-    </h3>
   </div>
   <div class="row">
     <div class="col-md-8">
@@ -26,14 +25,7 @@
                 <i class="fas fa-tag"><%= campground.tags.map(&:tag_name).join(', ') %></i>
               </td>
               <td></td>
-              <!--投稿の承認ステータスによって分岐表示-->
-              <% if campground.is_confirmed = 0 %>
-                <td class="text-secondary">保留中</td>
-              <% elsif campground.is_confirmed = 1 %>
-                <td class="text-success">承認済</td>
-              <% elsif %>
-                <td class="text-danger">却下済</td>
-              <% end %>
+              <td><%= campground.is_confirmed_i18n %></td>
             </tr>
             <% end %>
             <%#= paginate @campgrounds %>
