@@ -24,7 +24,7 @@
               <td>
                 <i class="fas fa-tag"><%= campground.tags.map(&:tag_name).join(', ') %></i>
               </td>
-              <td></td>
+              <td><%= "レビュー：#{campground.reviews.count}件" %></td>
               <td><%= campground.is_confirmed_i18n %></td>
             </tr>
             <% end %>

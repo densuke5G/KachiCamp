@@ -1,2 +1,30 @@
-<h1>Public::Campgrounds#status</h1>
-<p>Find me in app/views/public/campgrounds/status.html.erb</p>
+<div class="container">
+  <div class="row mb-2">
+    <h3>申請状況確認</h3>
+   </div>
+  <div class="row mb-2">
+    <div class="col-md-10">
+      <table class="table table-hover table-light table-borderless">
+        <thead>
+            <tr>
+              <th>キャンプ場名</th>
+              <th>申請者</th>
+              <th>承認ステータス</th>
+              <th>却下理由</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @campgrounds.each do |campground| %>
+            <tr>
+              <td><%= campground.name %></td>
+              <td><%= campground.user.name %></td>
+              <td><%= campground.is_confirmed_i18n %></td>
+              <td><%= campground.rejection_reason %></td>
+            </tr>
+            <% end %>
+            <%#= paginate @campgrounds %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -4,6 +4,7 @@ class Public::ReviewsController < ApplicationController
   end
   
   def index
+    @reviews = Review.where(user_id: current_user.id)
   end
   
   def create
