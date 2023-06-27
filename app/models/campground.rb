@@ -8,10 +8,10 @@ class Campground < ApplicationRecord
 
   enum is_confirmed: {pending: 0, confirmed: 1, rejected: 2}
 
-  has_many_attached :image
-  
-  
-  
+  has_one_attached :image
+
+
+
   def save_tag(sent_tags)
   # タグが存在していれば、タグの名前を配列として全て取得
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
@@ -29,7 +29,7 @@ class Campground < ApplicationRecord
       self.tags << new_post_tag
     end
   end
-  
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end

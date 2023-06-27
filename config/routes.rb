@@ -22,17 +22,22 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
-    resource :users, only: [:show, :edit, :update]
+    resource :users, only: [:show, :edit, :update] do
+      collection do
+        get 'favorite'
+        get 'information/edit' => 'users#edit', as: 'edit'
+        patch 'information/update' => 'users#update', as: 'update'
+      end
+    end
     resources :campgrounds, only: [:new, :index, :show, :create] do
       collection do
         get 'map'
         get 'thanks'
         get 'status'
       end
-      resource :favorites, only: [:index, :create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
     resources :reviews, only: [:new, :index, :create]
-    
     resources :contacts, only: [:new]
 
   end

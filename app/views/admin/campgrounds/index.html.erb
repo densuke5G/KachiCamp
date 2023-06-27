@@ -4,8 +4,8 @@
     <%= link_to "＋",new_admin_campground_path, class: 'btn float-right rounded-circle p-0 ml-auto',
       style: 'width: 2rem; height: 2rem; display: flex; justify-content: center; align-campgrounds: center; box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);' %>
   </div>
-  <div class="row">
-    <div class="col-md-8">
+  <div class="row mb-2">
+    <div class="col-md-10">
       <table class="table table-hover table-light table-borderless">
         <thead>
             <tr>
@@ -24,7 +24,7 @@
               <td>
                 <i class="fas fa-tag"><%= campground.tags.map(&:tag_name).join(', ') %></i>
               </td>
-              <td></td>
+              <td><%= "レビュー：#{campground.reviews.count}件" %></td>
               <td><%= campground.is_confirmed_i18n %></td>
             </tr>
             <% end %>

@@ -1,2 +1,41 @@
-<h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<div class="container">
+  <div class="row p-1">
+    <h3>会員一覧</h3>
+  </div>
+  <div class="row mb-2">
+    <div class="col-md-10">
+      <table class="table table-hover table-light table-borderless">
+        <thead>
+            <tr>
+              <th colspan="1"></th>
+              <th>ユーザー名</th>
+              <th>レビュー件数</th>
+              <th>会員ステータス</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @users.each do |user| %>
+            <tr>
+              <td>
+                <% if user.profile_image.blank? %>
+                  <%= image_tag 'no_image.jpg', class:"rounded-circle", size:"50x50" %>
+                <% elsif user.profile_image.attached? %>
+                  <%= image_tag user.profile_image, class:"rounded-circle", size:"50x50" %>
+                <% end %>
+              </td>
+              <td><%= link_to "#{user.name}", admin_user_path(user.id) %></td>
+              <td><%= "レビュー：#{user.reviews.count}件" %></td>
+
+              <% if user.is_banned == false %>
+                <td class="text-success">有効</td>
+              <% else %>
+                <td class="text-danger">退会</td>
+              <% end %>
+            </tr>
+            <% end %>
+            <%#= paginate @users %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

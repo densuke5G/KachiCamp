@@ -1,2 +1,23 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container">
+  <div class="row p-1">
+    <h3><%= @user.name %>さんのユーザー情報</h3>
+  </div>
+  <div class="row mb-2">
+    <%= form_with model: @user, url:admin_user_path, method: :patch, local: true do |f| %>
+      <%= f.label '会員ステータス' %>
+      <%= f.radio_button :is_banned, false %>
+      <%= f.label :is_banned, '有効' %>
+      <%= f.radio_button :is_banned, true %>
+      <%= f.label :is_banned , '退会' %>
+
+      <%= f.submit '変更を保存',class:'btn btn-success' %>
+    <% end %>
+  </div>
+  <div class="row mb-2">
+    <h3><%= @user.name %>さんのレビュー</h3>
+  </div>
+  <div class="row mb-2">
+    <%= render 'layouts/reviews', reviews: @user.reviews %>
+  </div>
+
+</div>

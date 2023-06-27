@@ -21,6 +21,7 @@ class Public::CampgroundsController < ApplicationController
   end
 
   def status
+    @campgrounds = Campground.where(user_id: current_user.id)
   end
 
   def create
@@ -44,6 +45,6 @@ class Public::CampgroundsController < ApplicationController
 
   def campground_params
     params.require(:campground).permit(:user_id, :name, :description, :address, :latitude, :longitude, :phone_number, :business_hours,
-    :check_in, :check_out, :station_line, :station_name, :station_walk, :busstop_line, :busstop_name, :busstop_walk, :rejection_reason, :rating, :is_confirmed, image: [])
+    :check_in, :check_out, :station_line, :station_name, :station_walk, :busstop_line, :busstop_name, :busstop_walk, :rejection_reason, :rating, :is_confirmed, :image)
   end
 end

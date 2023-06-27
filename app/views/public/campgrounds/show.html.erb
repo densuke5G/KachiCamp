@@ -116,6 +116,12 @@
       徒歩<%= @campground.busstop_walk %>分
         </div>
       </div>
+
+      <div class="text-center">
+        <% if @campground.camp_url.present? %>
+          <%= link_to "キャンプ場の詳細はこちら", "#{@campground.camp_url}", class: "white-btn btn rounded-pill w-50 m-auto my-2" %>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="row p-1">
@@ -128,41 +134,5 @@
     </div>
   </div>
 
-  <% @reviews.each do |review| %>
-    <div class="row mb-2">
-      <div class="col-sm-12 col-md-8">
-        <div class="card shadow bg-white rounded my-2">
-          <div class="row mb-2">
-            <div class="col-sm-6 col-md-3 ml-1">
-              <h5><%= review.title %></h5>
-              <!--JavaScript呼び出し-->
-              <div id="star-rate<%= review.id %>"></div>
-              <p><%= review.star %> / 5.0</p>
-              <p><%= review.user.name %> さん</p>
-            </div>
-            <div class="col-sm-6 col-md-5">
-              <p><%= review.body %></p>
-            </div>
-
-            <script>
-
-            let elem = document.querySelector('#star-rate<%= review.id %>');
-            let opt = {
-
-              size     : 36,
-              starOff:  '<%= asset_path('star-off.png') %>',
-              starOn : '<%= asset_path('star-on.png') %>',
-
-              readOnly: true,
-              score: <%= review.star %>,
-              half: false,
-            };
-            raty(elem, opt);
-
-            </script>
-          </div>
-         </div>
-      </div>
-    </div>
-  <% end %>
+  <%= render 'layouts/reviews', reviews: @reviews %>
 </div>
