@@ -25,7 +25,8 @@ Rails.application.routes.draw do
     resource :users, only: [:show, :edit, :update] do
       collection do
         get 'favorite'
-        get 'useredit'
+        get 'information/edit' => 'users#edit', as: 'edit'
+        patch 'information/update' => 'users#update', as: 'update'
       end
     end
     resources :campgrounds, only: [:new, :index, :show, :create] do

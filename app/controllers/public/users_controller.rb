@@ -2,7 +2,7 @@ class Public::UsersController < ApplicationController
   def show
   end
 
-  def useredit
+  def edit
   end
 
   def favorite
@@ -12,9 +12,9 @@ class Public::UsersController < ApplicationController
 
   def update
     if current_user.update(user_params)
-      redirect_back fallback_location: root_path
+      redirect_to users_path
     else
-      render:edit
+      render 'edit'
     end
   end
 

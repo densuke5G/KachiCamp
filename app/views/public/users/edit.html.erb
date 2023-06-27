@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <div class="col-md-8 mx-auto">
-      <%= form_with model: current_user, url: users_path, method: :patch, class: 'edit_user', local: true do |f| %>
+      <%= form_with model: current_user, url: update_users_path, method: :patch, class: 'edit_user', local: true do |f| %>
         <div class="actions p-1">
           <%= f.submit "変更を保存" ,class: 'btn btn-sm btn-success' %>
         </div>
