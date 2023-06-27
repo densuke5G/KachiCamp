@@ -2,6 +2,7 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  before_action :user_state, only: [:create]
 
   # GET /resource/sign_in
   # def new
@@ -27,15 +28,15 @@ class Public::SessionsController < Devise::SessionsController
 
   protected
 
-  def customer_state
+  def user_state
   ## 【処理内容1】 入力されたemailからアカウントを1件取得
-  @customer = Customer.find_by(email: params[:customer][:email])
+  @user = user.find_by(email: params[:user][:email])
   ## アカウントを取得できなかった場合、このメソッドを終了する
-  return if !@customer
+  return if !@user
   ## 【処理内容2】 取得したアカウントのパスワードと入力されたパスワードが一致してるかを判別
-  if @customer.valid_password?(params[:customer][:password])
+  if @user.valid_password?(params[:user][:password])
     ## 【処理内容3】
-    if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == true )
+    if @user.valid_password?(params[:user][:password]) && (@user.is_banned == true )
         flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
         redirect_to root_path
     end
