@@ -1,28 +1,22 @@
 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-  <button type="button" class="btn btn-vivid">
-    <li>
-      <%= link_to admin_root_path, class: 'nav-link text-primary' do %>
-        <i class=""></i> キャンプ場一覧
+    <li class="nav-item">
+      <%= link_to admin_root_path, class: 'nav-link text-dark' do %>
+        <i class="fas fa-campground"></i> キャンプ場一覧
       <% end %>
     </li>
-  </button>
-  <button type="button" class="btn btn-pink">
-    <li>
+    <li class="nav-item">
       <%=  link_to admin_users_path, class: 'nav-link text-dark' do %>
-        <i class=""></i> 会員一覧
+        <i class="fas fa-user"></i> 会員一覧
       <% end %>
     </li>
-  </button>
-  <button type="button" class="btn btn-darkgleen">
-    <li>
-      <%=  link_to admin_reviews_path, class: 'nav-link text-primary' do %>
-        <i class=""></i> レビュー一覧
+    <li class="nav-item">
+      <%=  link_to admin_reviews_path, class: 'nav-link text-dark' do %>
+        <i class="fas fa-comment-dots"></i> レビュー一覧
       <% end %>
     </li>
-  </button>
-  <button type="button" class="btn btn-cream">
+    <li class="nav-item">
       <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>
-        <i class=""></i> ログアウト（管理者）
+        <i class="fas fa-arrow-right"></i> ログアウト（管理者）
       <% end %>
-  </button>
+    </li>
 </div>

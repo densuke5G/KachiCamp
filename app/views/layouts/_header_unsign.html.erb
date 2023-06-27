@@ -1,28 +1,21 @@
 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-  <button type="button" class="btn btn-vivid">
-    <li>
-      <%= link_to map_campgrounds_path, class: 'nav-link text-primary' do %>
-        <i class="fas fa-solid fa-cookie-bite"></i> 地図から探す
+    <li class="nav-item">
+      <%= link_to campgrounds_path, class: 'nav-link text-dark' do %>
+        <i class="fas fa-campground"></i> キャンプ場一覧
       <% end %>
     </li>
-  </button>
-  <button type="button" class="btn btn-darkgleen">
-    <li>
-      <%= link_to users_guest_sign_in_path, method: :post, class: 'nav-link text-primary' do %>
-        <i class="fas fa-solid fa-cart-arrow-down"></i> ゲストログイン
+    <li class="nav-item">
+      <%= link_to users_guest_sign_in_path, method: :post, class: 'nav-link text-dark' do %>
+        <i class="fas fa-user-tie"></i> ゲストログイン
       <% end %>
     </li>
-    </button>
-  <button type="button" class="btn btn-darkgleen">
-    <li>
-      <%= link_to new_user_registration_path, class: 'nav-link text-primary' do %>
+    <li class="nav-item">
+      <%= link_to new_user_registration_path, class: 'nav-link text-dark' do %>
         <i class="fas fa-solid fa-user-plus"></i> 新規登録
       <% end %>
     </li>
-  </button>
-  <button type="button" class="btn btn-deep">
-    <li>
-      <%= link_to user_session_path, class: 'nav-link text-primary' do %>
+    <li class="nav-item">
+      <%= link_to user_session_path, class: 'nav-link text-dark' do %>
         <i class="fas fa-sign-in-alt"></i>ログイン
       <% end %>
     </li>
