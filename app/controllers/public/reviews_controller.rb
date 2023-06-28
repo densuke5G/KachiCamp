@@ -15,7 +15,7 @@ class Public::ReviewsController < ApplicationController
     @review.campground_id = params[:review][:campground_id]
 
     if @review.save
-      redirect_to campground_path(review.campground_id), notice:'投稿完了しました'
+      redirect_to campground_path(@review.campground_id), notice:'投稿完了しました'
     else
       render :new
     end
