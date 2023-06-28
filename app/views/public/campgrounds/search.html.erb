@@ -1,39 +1,31 @@
 <div class="container">
   <div class="row p-1">
-    <h2>行きたいキャンプ場一覧</h2>
+    <h3>検索結果</h3>
   </div>
   <div class="row">
-    <% @favorites.each do |favorite| %>
+  <% if @campgrounds == [] %>
+    <h3 class="mt-3 text-center">検索結果がありません。</h3>
+  <% else %>
+    <% @campgrounds.each do |campground| %>
     <!--承認ステータスが承認済のもののみ表示-->
-      <% if favorite.campground.is_confirmed = 1 %>
+      <% if campground.is_confirmed = 1 %>
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
           <div class="card shadow bg-white rounded my-5">
-            <% if favorite.campground.image.blank? %>
-              <%= link_to campground_path(favorite.campground) do %>
-                <%= image_tag 'no_image.jpg', size:"350x350" %>
+            <% if campground.image.blank? %>
+              <%= link_to campground_path(campground) do %>
+                <%= image_tag 'camping-icon.png', size:"350x350" %>
               <% end %>
-            <% elsif favorite.campground.image.attached? %>
-              <%= link_to campground_path(favorite.campground) do %>
-                <%= image_tag favorite.campground.image, size:"350x350" %>
+            <% elsif campground.image.attached? %>
+              <%= link_to campground_path(campground) do %>
+                <%= image_tag campground.image, size:"350x350" %>
               <% end %>
             <% end %>
             <div class="card-body">
               <h5 class="card-title">
-                <%= favorite.campground.name %>
+                <%= campground.name %>
               </h5>
               <div class="rating d-flex align-items-center m-2">
                 <%#= image_tag "star-on.png",class: "me-2" %><%#= rating(campground.reviews) %>
-              </div>
-              <div class="card-favorite">
-                <% if favorite.campground.favorited_by?(current_user) %>
-                  <%= link_to campground_favorites_path(favorite.campground_id), method: :delete do %>
-                    <i class="fas fa-bookmark"></i>
-                  <% end %>
-                <% else %>
-                  <%= link_to campground_favorites_path(favorite.campground_id), method: :post do %>
-                    <i class="far fa-bookmark"></i>
-                  <% end %>
-                <% end %>
               </div>
 
               <div class="row mb-2">
@@ -41,7 +33,7 @@
                   <p>タグ</p>
                 </div>
                 <div class="col-5 text-left px-0">
-                  <% favorite.campground.tags.each do |tag| %>
+                  <% campground.tags.each do |tag| %>
                     <i class="fas fa-tag"><%= tag.tag_name %></i>
                   <% end %>
                 </div>
@@ -52,7 +44,7 @@
                   <p>住所</p>
                 </div>
                 <div class="col-5 text-left px-0">
-                  <%= favorite.campground.address %>
+                  <%= campground.address %>
                 </div>
               </div>
 
@@ -61,7 +53,7 @@
                   <p>電話番号</p>
                 </div>
                 <div class="col-5 text-left px-0">
-                  <%= favorite.campground.phone_number %>
+                  <%= campground.phone_number %>
                 </div>
               </div>
 
@@ -70,7 +62,7 @@
                   <p>チェックイン</p>
                 </div>
                 <div class="col-5 text-left px-0">
-                  <%= favorite.campground.check_in %>
+                  <%= campground.check_in %>
                 </div>
               </div>
 
@@ -79,7 +71,7 @@
                   <p>チェックアウト</p>
                 </div>
                 <div class="col-5 text-left px-0">
-                  <%= favorite.campground.check_out %>
+                  <%= campground.check_out %>
                 </div>
               </div>
 
@@ -88,9 +80,9 @@
                   <p>最寄り駅</p>
                 </div>
                 <div class="col-5 text-left px-0">
-                  <%= favorite.campground.station_line %>線<br>
-                  <%= favorite.campground.station_name %>駅<br>
-              徒歩<%= favorite.campground.station_walk %>分
+                  <%= campground.station_line %>線<br>
+                  <%= campground.station_name %>駅<br>
+              徒歩<%= campground.station_walk %>分
                 </div>
               </div>
 
@@ -99,9 +91,9 @@
                   <p>最寄りバス停</p>
                 </div>
                 <div class="col-5 text-left px-0">
-                  <%= favorite.campground.busstop_line %><br>
-                  <%= favorite.campground.busstop_name %>バス停<br>
-              徒歩<%= favorite.campground.busstop_walk %>分
+                  <%= campground.busstop_line %><br>
+                  <%= campground.busstop_name %>バス停<br>
+              徒歩<%= campground.busstop_walk %>分
                 </div>
               </div>
 
@@ -110,6 +102,15 @@
         </div>
       <% end %>
     <% end %>
+  <% end %>
+  </div>
+  <div class="row mb-2">
+    <h5 class="mt-3 text-center">キャンプ場の情報をご存じでしたら情報提供にご協力をお願いします!</h5>
+  </div>
+  <div class="row mb-2">
+    <p class="text-center">
+      <%= link_to "情報を提供する", new_campground_path, class: "btn btn-info rounded-pill m-auto my-5" %>
+    </p>
   </div>
 </div>
 

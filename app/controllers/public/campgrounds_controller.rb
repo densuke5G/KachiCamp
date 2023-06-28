@@ -5,7 +5,11 @@ class Public::CampgroundsController < ApplicationController
 
   def index
     @campgrounds = Campground.all
-    # @campground_tags = @campground.tags
+  end
+
+  def search
+    @q = Campground.ransack(params[:q])
+    @campgrounds = @q.result(distinct: true)
   end
 
   def map
@@ -25,14 +29,14 @@ class Public::CampgroundsController < ApplicationController
   end
 
   def create
-    campground = Campground.new(campground_params)
-    campground.user_id = current_user.id
+    @campground = Campground.new(campground_params)
+    @campground.user_id = current_user.id
 
     # タグを,で区切り配列にする
     tag_list = params[:campground][:tag_name].split(',')
 
-    if campground.save
-      campground.save_tag(tag_list)
+    if @campground.save
+      @campground.save_tag(tag_list)
       redirect_to campground_path(campground), notice:'投稿完了しました'
     else
       render:new
@@ -45,6 +49,7 @@ class Public::CampgroundsController < ApplicationController
 
   def campground_params
     params.require(:campground).permit(:user_id, :name, :description, :address, :latitude, :longitude, :phone_number, :business_hours,
-    :check_in, :check_out, :station_line, :station_name, :station_walk, :busstop_line, :busstop_name, :busstop_walk, :rejection_reason, :rating, :is_confirmed, :image)
+    :check_in, :check_out, :station_line, :station_name, :station_walk, :busstop_line, :busstop_name, :busstop_walk, :rejection_reason,
+    :camp_url, :tag_name, :rating, :is_confirmed, :image)
   end
 end

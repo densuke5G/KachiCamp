@@ -12,7 +12,7 @@ class Public::UsersController < ApplicationController
 
   def update
     if current_user.update(user_params)
-      redirect_to users_path
+      redirect_to users_path, notice:'編集完了しました'
     else
       render 'edit'
     end

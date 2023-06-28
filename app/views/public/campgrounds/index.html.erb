@@ -9,13 +9,17 @@
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
           <div class="card shadow bg-white rounded my-5">
             <% if campground.image.blank? %>
-              <%= image_tag 'camping-icon.png', size:"350x350" %>
+              <%= link_to campground_path(campground) do %>
+                <%= image_tag 'camping-icon.png', size:"350x350" %>
+              <% end %>
             <% elsif campground.image.attached? %>
-              <%= image_tag campground.image, size:"350x350" %>
+              <%= link_to campground_path(campground) do %>
+                <%= image_tag campground.image, size:"350x350" %>
+              <% end %>
             <% end %>
             <div class="card-body">
               <h5 class="card-title">
-                <%= link_to campground.name, campground_path(campground) %>
+                <%= campground.name %>
               </h5>
               <div class="rating d-flex align-items-center m-2">
                 <%#= image_tag "star-on.png",class: "me-2" %><%#= rating(campground.reviews) %>

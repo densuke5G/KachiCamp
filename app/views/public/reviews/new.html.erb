@@ -2,6 +2,7 @@
   <div class="row p-1">
     <h2>レビュー投稿</h2>
   </div>
+  <%= render "public/shared/error_messages", resource: @review %>
   <div class="row">
     <div class="col-md-8">
       <%= form_with model: @review, url: reviews_path, class: 'new_review', local: true do |f| %>
@@ -39,7 +40,7 @@
 
         let elem = document.querySelector('#post_raty');
         let opt = {
-          
+
           size     : 36,
           starOff:  '<%= asset_path('star-off.png') %>',
           starOn : '<%= asset_path('star-on.png') %>',
@@ -48,7 +49,7 @@
           half: false,
         };
         raty(elem, opt);
-        
+
         </script>
       <% end %>
     </div>

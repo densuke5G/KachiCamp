@@ -1,5 +1,5 @@
 <%= form_with model: campground, url: admin_campgrounds_path, class: 'new_campground', local: true do |f| %>
-        <%#= render "devise/shared/error_messages", resource: resource %>
+        <%= render "public/shared/error_messages", resource: @campground %>
 
           <div class="row mb-2">
             <div class="col-sm-3 col-5 text-left pl-2">

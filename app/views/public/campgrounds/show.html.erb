@@ -7,7 +7,11 @@
       <h3 class="name">
         <%= @campground.name %>
       </h3>
-      syashinn
+      <% if @campground.image.blank? %>
+        <%= image_tag 'camping-icon.png', size:"350x350" %>
+      <% elsif @campground.image.attached? %>
+        <%= image_tag @campground.image, size:"350x350" %>
+      <% end %>
 
       <% if @campground.favorited_by?(current_user) %>
         <%= link_to campground_favorites_path(@campground), method: :delete do %>
