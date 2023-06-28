@@ -2,6 +2,7 @@
   <div class="row p-1">
     <h3>ユーザー情報編集</h3>
   </div>
+  <%= render "public/shared/error_messages", resource: current_user %>
   <div class="row">
     <div class="col-md-8 mx-auto">
       <%= form_with model: current_user, url: update_users_path, method: :patch, class: 'edit_user', local: true do |f| %>

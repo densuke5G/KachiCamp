@@ -10,7 +10,15 @@ class Campground < ApplicationRecord
 
   has_one_attached :image
 
+  validates :name, presence: true
+  validates :address, presence: true
+  validates :check_in, presence: true
+  validates :check_out, presence: true
 
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["address", "business_hours", "busstop_line", "busstop_name", "busstop_walk", "camp_url", "check_in", "check_out", "created_at", "description", "id", "is_confirmed", "latitude", "longitude", "name", "phone_number", "rating", "rejection_reason", "station_line", "station_name", "station_walk", "updated_at", "user_id"]
+  end
 
   def save_tag(sent_tags)
   # タグが存在していれば、タグの名前を配列として全て取得

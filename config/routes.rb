@@ -34,6 +34,7 @@ Rails.application.routes.draw do
         get 'map'
         get 'thanks'
         get 'status'
+        get 'search'
       end
       resource :favorites, only: [:create, :destroy]
     end

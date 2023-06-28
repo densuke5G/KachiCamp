@@ -16,6 +16,9 @@
       <%= render 'layouts/header' %>
     </header>
     <main>
+      <div class="text-info mb-2">
+        <%= flash[:notice] %>
+      </div>
       <%= yield %>
     </main>
 
