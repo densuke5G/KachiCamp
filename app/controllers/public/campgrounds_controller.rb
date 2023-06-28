@@ -1,4 +1,6 @@
 class Public::CampgroundsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :search, :map, :show]
+  
   def new
     @campground = Campground.new
   end

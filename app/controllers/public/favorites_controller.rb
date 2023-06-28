@@ -1,4 +1,6 @@
 class Public::FavoritesController < ApplicationController
+  before_action :authenticate_user! 
+  
   def index
     @favorites = Favorite.where(user_id: currnent_user_id)
     @campgrounds = Campground.where(campground_id: @favorites.campground_id)
