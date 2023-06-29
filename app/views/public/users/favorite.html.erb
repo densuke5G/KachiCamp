@@ -5,7 +5,7 @@
   <div class="row">
     <% @favorites.each do |favorite| %>
     <!--承認ステータスが承認済のもののみ表示-->
-      <% if favorite.campground.is_confirmed = 1 %>
+      <% if favorite.campground.confirmed? %>
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
           <div class="card shadow bg-white rounded my-5">
             <% if favorite.campground.image.blank? %>
