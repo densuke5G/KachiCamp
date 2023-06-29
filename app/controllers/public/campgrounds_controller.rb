@@ -40,7 +40,7 @@ class Public::CampgroundsController < ApplicationController
 
     if @campground.save
       @campground.save_tag(tag_list)
-      redirect_to campground_path(@campground), notice:'投稿完了しました'
+      redirect_to campgrounds_path, notice:'投稿完了しました'
     else
       render:new
     end
