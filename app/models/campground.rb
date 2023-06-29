@@ -16,8 +16,13 @@ class Campground < ApplicationRecord
   validates :check_out, presence: true
 
 
+  # Ransackを使うための設定
   def self.ransackable_attributes(auth_object = nil)
     ["address", "business_hours", "busstop_line", "busstop_name", "busstop_walk", "camp_url", "check_in", "check_out", "created_at", "description", "id", "is_confirmed", "latitude", "longitude", "name", "phone_number", "rating", "rejection_reason", "station_line", "station_name", "station_walk", "updated_at", "user_id"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["camptags", "reviews", "tags", "user"]
   end
 
   def save_tag(sent_tags)
