@@ -42,13 +42,13 @@ class Admin::CampgroundsController < ApplicationController
 
     if @campground.update(campground_params)
       # campground.idに紐付いたtagを削除する
-      @old_relations = Camptag.where(campground_id: campground.id)
+      @old_relations = Camptag.where(campground_id: @campground.id)
       @old_relations.each do |relation|
         relation.delete
       end
 
       @campground.save_tag(tag_list)
-      redirect_to admin_campground_path(campground.id), notice:'編集完了しました'
+      redirect_to admin_campground_path(@campground.id), notice:'編集完了しました'
     else
       render:edit
     end
