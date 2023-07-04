@@ -134,12 +134,16 @@
   <div class="row p-1">
     <div class="col-sm-12 col-8">
       <h3>レビュー</h3>
+    </div>
+  </div>
+  <div class="row p-1">
+    <div class="col-sm-12 col-8">
+      <%= render 'layouts/reviews', reviews: @reviews %>
+
       <% if user_signed_in? %>
-      <!--URLにキャンプ場IDを仕込んで送る-->
+        <!--URLにキャンプ場IDを仕込んで送る-->
         <%= link_to "レビューを投稿する", new_review_path(campground_id: @campground.id), class: "btn btn-success mt-2" %>
       <% end %>
     </div>
   </div>
-
-  <%= render 'layouts/reviews', reviews: @reviews %>
 </div>

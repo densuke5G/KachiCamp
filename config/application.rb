@@ -12,7 +12,7 @@ module KachiCamp
     config.load_defaults 6.1
 
     config.i18n.default_locale = :ja
-
+    config.paths.add 'lib', eager_load: true # 追加
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
