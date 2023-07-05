@@ -1,19 +1,30 @@
 <div class="row">
-  <div class="col-md-10">
+  <div class="col-md-12">
     <% reviews.each do |review| %>
       <div class="row mb-2">
         <div class="col-sm-12 col-md-8">
           <div class="card shadow bg-white rounded my-2">
             <div class="row mb-2">
-              <div class="col-sm-6 col-md-3 ml-1">
-                <h5><%= review.title %></h5>
+              <div class="col-sm-6 col-md-3 m-3">
+                <h5 class="fw-bold text-center"><%= review.title %></h5>
                 <!--JavaScript呼び出し-->
                 <div id="star-rate<%= review.id %>"></div>
                 <p><%= review.star %> / 5.0</p>
-                <p><%= link_to "#{review.user.name}さん", admin_user_path(review.user.id) %></p>
               </div>
-              <div class="col-sm-6 col-md-5">
+              <div class="col-sm-6 col-md-5 m-3">
                 <p><%= review.body %></p>
+              </div>
+              <div class="col-sm-6 col-md-3 m-3">
+                <% if review.user.profile_image.present? %>
+                  <%= image_tag review.user.profile_image, class:"rounded-circle", size:"50x50" %>
+                <% else %>
+                  <i class="fas fa-user-plus fa-4x ms-3"></i>
+                <% end %>
+                <% if admin_signed_in? %>
+                  <p><%= link_to "#{review.user.name}さん", admin_user_path(review.user.id) %></p>
+                <% else %>
+                  <p><%= review.user.name %> さん</p>
+                <% end %>
               </div>
             </div>
           </div>
