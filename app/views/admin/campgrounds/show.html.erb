@@ -114,14 +114,8 @@
 
     </div>
     <div class="col-md-2 mx-auto">
-      <% if @campground.image.blank? %>
-        <%= link_to campground_path(@campground) do %>
-          <%= image_tag 'camping-icon.png', size:"350x350" %>
-        <% end %>
-      <% elsif @campground.image.attached? %>
-        <%= link_to campground_path(@campground) do %>
-          <%= image_tag @campground.image, size:"350x350" %>
-        <% end %>
+      <%= link_to campground_path(@campground) do %>
+        <%= image_tag @campground.get_image(350, 350) %>
       <% end %>
     </div>
   </div>

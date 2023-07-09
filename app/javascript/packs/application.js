@@ -12,6 +12,7 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
+
 window.$ = window.jQuery = require('jquery');
 
 import Raty from "raty.js"

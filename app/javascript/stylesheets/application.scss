@@ -1,1 +1,19 @@
 @use '~bootstrap/scss/bootstrap';
+
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap');
+
+* {
+  font-family: 'Zen Maru Gothic', sans-serif;
+}
+
+head {
+  background-color: #83cddb;
+}
+
+footer {
+  background-color: #a4a6a4;
+}
+
+h3 {
+    font-weight: bold;
+}

@@ -4,39 +4,27 @@
   </div>
   <div class="row p-1">
     <div class="col-sm-12 col-md-6 col-lg-4">
-      <h3 class="name">
-        <%= @campground.name %>
-      </h3>
+      <div class="row p-1 d-flex justify-content-between">
+        <h3 class="name"><%= @campground.name %></h3>
 
-      <% if @campground.image.blank? %>
-        <%= image_tag 'camping-icon.png', size:"350x350" %>
-      <% elsif @campground.image.attached? %>
-        <%= image_tag @campground.image, size:"350x350" %>
-      <% end %>
-
-      <% if user_signed_in? %>
-        <% if @campground.favorited_by?(current_user) %>
-          <%= link_to campground_favorites_path(@campground), method: :delete do %>
-            <i class="fas fa-bookmark"></i>
-          <% end %>
-        <% else %>
-          <%= link_to campground_favorites_path(@campground), method: :post do %>
-            <i class="far fa-bookmark"></i>
+        <% if user_signed_in? %>
+          <% if @campground.favorited_by?(current_user) %>
+            <%= link_to campground_favorites_path(@campground), method: :delete do %>
+              <i class="fas fa-bookmark fa-2x"></i>
+            <% end %>
+          <% else %>
+            <%= link_to campground_favorites_path(@campground), method: :post do %>
+              <i class="far fa-bookmark fa-2x"></i>
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
-
-    </div>
-    <div class="col-sm-12 col-md-6 col-lg-8 ml-auto">
-      <div class="row mb-2">
-        <div class="col-sm-3 col-5 text-left pl-2">
-          <p>キャンプ場名</p>
-        </div>
-        <div class="col-sm-7 col-5 text-left px-0">
-          <%= @campground.name %>
-        </div>
       </div>
 
+      <%= image_tag @campground.get_image(350, 350) %>
+    </div>
+
+
+    <div class="col-sm-12 col-md-6 col-lg-8 ml-auto">
       <div class="row mb-2">
         <div class="col-sm-3 col-5 text-left pl-2">
           <p>タグ</p>
@@ -146,4 +134,43 @@
       <% end %>
     </div>
   </div>
+  <div class="row p-1">
+    <div class="col-sm-12 col-8">
+      <h3>マップ</h3>
+    </div>
+  </div>
+  <div class="row p-1">
+    <div class="col-sm-12 col-md-8 mr-2">
+      <div id="map"></div>
+    </div>
+  </div>
 </div>
+<%= image_tag @campground.get_image(200, 200) %>
+
+<style>
+/*マップのスタイル*/
+#map{
+  height: 400px;
+  width:100%;
+}
+</style>
+
+<script>
+// マップ表示スクリプト
+function initMap(){
+
+  let latlng = {lat: <%=@campground.latitude%>, lng: <%= @campground.longitude %>}
+  //マップの設定
+  let map = new google.maps.Map(document.getElementById('map'), {
+  center: latlng,           //地図表示の中心位置を指定
+  zoom: 15                  //倍率
+  });
+
+  //マーカーの設定
+  let marker = new google.maps.Marker({
+     position: latlng,       //マーカーの位置を指定
+     map: map
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>

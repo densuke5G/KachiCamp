@@ -8,14 +8,8 @@
       <% if campground.confirmed? %>
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
           <div class="card shadow bg-white rounded my-5">
-            <% if campground.image.blank? %>
-              <%= link_to campground_path(campground) do %>
-                <%= image_tag 'camping-icon.png', size:"350x350" %>
-              <% end %>
-            <% elsif campground.image.attached? %>
-              <%= link_to campground_path(campground) do %>
-                <%= image_tag campground.image, size:"350x350" %>
-              <% end %>
+            <%= link_to campground_path(campground) do %>
+              <%= image_tag campground.get_image(350, 350) %>
             <% end %>
             <div class="card-body">
               <h5 class="card-title">
