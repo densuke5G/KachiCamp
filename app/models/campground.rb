@@ -15,6 +15,10 @@ class Campground < ApplicationRecord
   validates :check_in, presence: true
   validates :check_out, presence: true
 
+  # Geocodeを使うための設定
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
 
   # Ransackを使うための設定
   def self.ransackable_attributes(auth_object = nil)
@@ -49,7 +53,7 @@ class Campground < ApplicationRecord
 
   def get_image(width, height)
     unless image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      file_path = Rails.root.join('app/assets/images/camping-icon.png')
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     image.variant(resize_to_limit: [width, height]).processed

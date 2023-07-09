@@ -8,11 +8,7 @@
         <%= @campground.name %>
       </h3>
 
-      <% if @campground.image.blank? %>
-        <%= image_tag 'camping-icon.png', size:"350x350" %>
-      <% elsif @campground.image.attached? %>
-        <%= image_tag @campground.image, size:"350x350" %>
-      <% end %>
+        <%= image_tag @campground.get_image(350, 350) %>
 
       <% if user_signed_in? %>
         <% if @campground.favorited_by?(current_user) %>
@@ -146,4 +142,43 @@
       <% end %>
     </div>
   </div>
+  <div class="row p-1">
+    <div class="col-sm-12 col-8">
+      <h3>マップ</h3>
+    </div>
+  </div>
+  <div class="row p-1">
+    <div class="col-sm-12 col-md-8 mr-2">
+      <div id="map"></div>
+    </div>
+  </div>
 </div>
+<%= image_tag @campground.get_image(200, 200) %>
+
+<style>
+/*マップのスタイル*/
+#map{
+  height: 400px;
+  width:100%;
+}
+</style>
+
+<script>
+// マップ表示スクリプト
+function initMap(){
+
+  let latlng = {lat: <%=@campground.latitude%>, lng: <%= @campground.longitude %>}
+  //マップの設定
+  let map = new google.maps.Map(document.getElementById('map'), {
+  center: latlng,           //地図表示の中心位置を指定
+  zoom: 15                  //倍率
+  });
+
+  //マーカーの設定
+  let marker = new google.maps.Marker({
+     position: latlng,       //マーカーの位置を指定
+     map: map
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>
