@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row p-1">
+    <h3>レビュー検索</h3>
+    <%= search_form_for @q, url: admin_reviews_path do |f| %>
+      <%= f.search_field :title_or_body_cont, class: "form-control px-4", placeholder: ' レビューを検索' %>
+      <% f.submit '検索' %>
+    <% end %>
+  </div>
+  <%= render 'layouts/reviews', reviews: @reviews %>
+  </div>
+</div>

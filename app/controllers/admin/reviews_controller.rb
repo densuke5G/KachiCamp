@@ -1,10 +1,15 @@
 class Admin::ReviewsController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @reviews = Review.all
   end
 
+  def search
+    @q = Review.ransack(params[:q])
+    @reviews = @q.result(distinct: true)
+  end
+  
   def destroy
     review = Review.find(params[:id])
 
