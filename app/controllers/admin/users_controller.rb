@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @users = User.all
   end
@@ -10,8 +10,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id])
-    if user.update(user_params)
+    @user = User.find(params[:id])
+
+    if @user.update(user_params)
+      # ユーザーのレビューを削除
+      @user.reviews.destroy_all
       flash[:notice] = "編集完了しました"
       redirect_to admin_user_path(user)
     else
