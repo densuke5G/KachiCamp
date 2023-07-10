@@ -16,7 +16,7 @@
                 <%= campground.name %>
               </h5>
               <div class="rating d-flex align-items-center m-2">
-                <%#= image_tag "star-on.png",class: "me-2" %><%#= rating(campground.reviews) %>
+                <%= image_tag "star-on.png",class: "mr-2" %><%= campground.avg_score %> ( <%= campground.reviews.count %> )
               </div>
 
               <div class="row mb-2">

@@ -50,7 +50,15 @@ class Campground < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
+
+  def avg_score
+    unless self.reviews.empty?
+      reviews.average(:star).round(1)
+    else
+      0.0
+    end
+  end
+
   # 画像がない場合、デフォルト画像を表示する
   def get_image(width, height)
     unless image.attached?
