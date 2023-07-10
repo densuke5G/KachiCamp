@@ -16,7 +16,11 @@ Rails.application.routes.draw do
     root to: 'campgrounds#index'
     resources :users, only: [:index, :show, :update]
     resources :campgrounds, only: [:new, :index, :show, :edit, :create, :update, :destroy]
-    resources :reviews, only: [:index, :show, :destroy]
+    resources :reviews, only: [:index, :show, :destroy] do
+      collection do
+        get 'search'
+      end
+    end
 
   end
 

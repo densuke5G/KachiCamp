@@ -13,6 +13,11 @@ class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "email", "encrypted_password", "id", "is_banned", "name", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at"]
+  end
+
+
   # ゲストユーザーの定義
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|

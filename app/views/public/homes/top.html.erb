@@ -27,7 +27,43 @@
       <%= link_to "キャンプ場を探す", campgrounds_path, class: "btn btn-success rounded-pill m-auto my-2" %>
     </div>
   </div>
+
   <div class="row mb-2">
+      <% @rankcampgrounds.each_with_index do |campground,i| %>
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+          <div class="card shadow rounded my-5 position-relative">
+            <span class="position-absolute top-0 translate-middle fw-bold fa-stack">
+              <% if i == 0 %>
+                <i class="fas fa-crown fa-stack-2x gold-crown"></i>
+              <% elsif i == 1 %>
+                <i class="fas fa-crown fa-stack-2x silver-crown"></i>
+              <% elsif i == 2 %>
+                <i class="fas fa-crown fa-stack-2x bronze-crown"></i>
+              <% end %>
+              <i class="position-absolute top-0 text-white fa-stack-1x ranking-number"> <%= "#{i+1}" %></i>
+            </span>
+            <%= link_to campground_path(campground) do %>
+              <%= image_tag campground.get_image(350, 350) %>
+            <% end %>
+            <div class="card-body bg-white">
+              <h5 class="card-title">
+                <%= campground.name %>
+              </h5>
+              <div class="rating d-flex align-items-center m-2">
+                <%= image_tag "star-on.png",class: "mr-2" %><%= campground.avg_score %> ( <%= campground.reviews.count %> )
+              </div>
+              <div class="mb-1">
+                <i class="fas fa-map-marker-alt fa-fw"></i>
+                <cite title="<%= campground.address %>">
+                <%= campground.address %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+  </div>
+  <div class="row mb-2">
+    <h3>マップ</h3>
     <div id="map"></div>
   </div>
 </div>

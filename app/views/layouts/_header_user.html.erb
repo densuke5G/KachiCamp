@@ -1,28 +1,21 @@
-<div class="search">
-  <div class="d-flex">
+<div class="search d-flex flex-wrap">
     <i class="fas fa-search ms-2" style=" margin-top: 12px; margin-left: 8px; position:absolute;"></i>
     <%= search_form_for @q, url: search_campgrounds_path do |f| %>
       <%= f.search_field :tags_tag_name_cont, class: "form-control px-4", placeholder: ' タグでキャンプ場を検索' %>
       <% f.submit '検索' %>
     <% end %>
-  </div>
   <div class="btn-group" role="group" aria-label="Basic mixed styles example">
       <li class="nav-item">
         <%=  link_to campgrounds_path, class: 'nav-link text-dark' do %>
           <i class="fas fa-campground"></i> キャンプ場一覧
         <% end %>
       </li>
-      <li class="nav-item">
-        <%=  link_to new_campground_path, class: 'nav-link text-dark' do %>
-          <i class="fas fa-info-circle"></i> 情報提供
-        <% end %>
-      </li>
-      <li class="nav-item">
+      <li class="nav-item ml-1">
         <%=  link_to users_path, class: 'nav-link text-dark' do %>
           <i class="fas fa-solid fa-user"></i> マイページ
         <% end %>
       </li>
-      <li class="nav-item">
+      <li class="nav-item ml-1">
         <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
           <i class="fas fa-solid fa-arrow-right"></i> ログアウト
         <% end %>
