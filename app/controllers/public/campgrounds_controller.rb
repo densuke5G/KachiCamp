@@ -6,12 +6,12 @@ class Public::CampgroundsController < ApplicationController
   end
 
   def index
-    @campgrounds = Campground.all
+    @campgrounds = Campground.page(params[:page])
   end
 
   def search
     @q = Campground.ransack(params[:q])
-    @campgrounds = @q.result(distinct: true)
+    @campgrounds = @q.result(distinct: true).page(params[:page])
   end
 
   def map
@@ -27,20 +27,20 @@ class Public::CampgroundsController < ApplicationController
   end
 
   def status
-    @campgrounds = Campground.where(user_id: current_user.id)
+    @campgrounds = Campground.where(user_id: current_user.id).page(params[:page])
   end
 
   def create
     @campground = Campground.new(campground_params)
     @campground.user_id = current_user.id
-    
+
 
     # タグを,で区切り配列にする
     tag_list = params[:campground][:tag_name].split(',')
 
     if @campground.save
       @campground.save_tag(tag_list)
-      redirect_to campgrounds_path, notice:'投稿完了しました'
+      redirect_to thanks_campgrounds_path, notice:'投稿完了しました'
     else
       render:new
     end

@@ -1,9 +1,13 @@
 <div class="container">
   <div class="row p-1">
     <h3>レビュー検索</h3>
-    <%= search_form_for @q, url: admin_reviews_path do |f| %>
-      <%= f.search_field :title_or_body_cont, class: "form-control px-4", placeholder: ' レビューを検索' %>
-      <% f.submit '検索' %>
+    <%= search_form_for @q, url: search_admin_reviews_path do |f| %>
+      <%= f.search_field :user_name_cont, class: "form-control px-4", placeholder: ' ユーザー名で検索' %>
+
+      <%= f.label :文章解析 %>
+      <%= f.radio_button :score_gteq, '0.5' %>良感情
+      <%= f.radio_button :score_lteq, '-0.5' %>悪感情
+      <%= f.submit '検索' %>
     <% end %>
   </div>
   <%= render 'layouts/reviews', reviews: @reviews %>
