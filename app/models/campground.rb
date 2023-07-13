@@ -47,10 +47,13 @@ class Campground < ApplicationRecord
     end
   end
 
+  
+  # 既にブックマークされているか確認
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
 
+  # レビューの平均値を算出
   def avg_score
     unless self.reviews.empty?
       reviews.average(:star).round(1)
