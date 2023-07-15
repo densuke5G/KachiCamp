@@ -3,7 +3,7 @@
     <h3>お問い合わせフォーム</h3>
   </div>
   <div class="formgroup">
-      <%= form_with model: @contact, url: confirm_contacts_path, class: 'new_contact', local: true do |f| %>
+      <%= form_with model: @contact, url: contacts_path, class: 'confirm_contact', local: true do |f| %>
         <%= render "public/shared/error_messages", resource: @contact %>
 
           <div class="row mb-2">
@@ -11,7 +11,8 @@
               <p>お名前</p>
             </div>
             <div class="col-sm-7 col-5 text-left px-0">
-              <%= f.text_field :name, autofocus: true, class: "" %>
+              <%= f.hidden_field :name, class: "" %>
+              <%= @contact.name %>
             </div>
           </div>
 
@@ -20,12 +21,14 @@
               <p>お問い合わせ内容</p>
             </div>
             <div class="col-sm-7 col-5 text-left px-0">
-              <%= f.text_area :content, autofocus: true, placeholder: "お問い合わせ内容を入力してください", class: "width:100%" %>
+              <%= f.hidden_field :content, class: "" %>
+              <%= @contact.content %>
             </div>
           </div>
 
         <div class="actions">
-          <%= f.submit "確認画面へ" ,class: 'btn btn-sm btn-success' %>
+          <%= f.submit "送信" ,class: 'btn btn-sm btn-success' %>
+          <%= link_to "戻る", new_contact_path, class: "btn btn-info mt-1" %>
         </div>
       <% end %>
   </div>

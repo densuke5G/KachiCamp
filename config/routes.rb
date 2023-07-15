@@ -43,7 +43,12 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
     end
     resources :reviews, only: [:new, :index, :create]
-    resources :contacts, only: [:new]
+    resources :contacts, only: [:new, :create] do
+      collection do
+        post 'confirm'
+        get 'thanks'
+      end
+    end
 
   end
 

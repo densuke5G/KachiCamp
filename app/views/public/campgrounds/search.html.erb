@@ -5,6 +5,9 @@
   <div class="row">
   <% if @campgrounds == [] %>
     <h3 class="mt-3 text-center">検索結果がありません。</h3>
+    <div class="p-2 text-center">
+      <%= image_tag 'animal_okojo_summer.png', size:"300x300" %>
+    </div>
   <% else %>
     <% @campgrounds.each do |campground| %>
     <!--承認ステータスが承認済のもののみ表示-->
