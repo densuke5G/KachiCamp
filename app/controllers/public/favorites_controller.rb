@@ -3,7 +3,7 @@ class Public::FavoritesController < ApplicationController
   
   def index
     @favorites = Favorite.where(user_id: currnent_user_id)
-    @campgrounds = Campground.where(campground_id: @favorites.campground_id)
+    @campgrounds = Campground.where(campground_id: @favorites.campground_id).page(params[:page])
   end
 
   def create

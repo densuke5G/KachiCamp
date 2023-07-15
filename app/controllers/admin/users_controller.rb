@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @users = User.all
+    @users = User.page(params[:page])
   end
 
   def show
@@ -13,7 +13,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      # ユーザーのレビューを削除
+      # ユーザーの退会処理時、レビューを削除
       @user.reviews.destroy_all
       flash[:notice] = "編集完了しました"
       redirect_to admin_user_path(user)

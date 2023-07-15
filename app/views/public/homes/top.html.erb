@@ -91,22 +91,24 @@
 
       //複数マーカー 表示
       <% @campgrounds.each do |campground|%>
-        ( function() {
-          let markerLatLng = { lat: <%= campground.latitude %>, lng: <%= campground.longitude %> }; // 緯度経度のデータ作成
-          let marker = new google.maps.Marker({
-            position: markerLatLng,
-            map: map
-          });
+        <% if campground.confirmed? %>
+          ( function() {
+            let markerLatLng = { lat: <%= campground.latitude %>, lng: <%= campground.longitude %> }; // 緯度経度のデータ作成
+            let marker = new google.maps.Marker({
+              position: markerLatLng,
+              map: map
+            });
       //マーカーをクリックしたとき、詳細情報を表示
-          let infowindow = new google.maps.InfoWindow({
-            position: markerLatLng,
-            content: "<a href='<%= campground_url(campground.id) %>'><%= campground.name %></a>"
-          }); //ここで詳細ページへのリンクを表示させる
-          marker.addListener('click', function() {
-            infowindow.open(map, marker);
-          });
+            let infowindow = new google.maps.InfoWindow({
+              position: markerLatLng,
+              content: "<a href='<%= campground_url(campground.id) %>'><%= campground.name %></a>"
+            }); //ここで詳細ページへのリンクを表示させる
+            marker.addListener('click', function() {
+              infowindow.open(map, marker);
+            });
 
-       })();
+         })();
+        <% end %>
       <% end %>
   }
 </script>

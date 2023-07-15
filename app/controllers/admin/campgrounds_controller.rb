@@ -6,7 +6,7 @@ class Admin::CampgroundsController < ApplicationController
   end
 
   def index
-    @campgrounds = Campground.all
+    @campgrounds = Campground.page(params[:page])
 
   end
 

@@ -2,12 +2,12 @@ class Admin::ReviewsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @reviews = Review.all
+    @reviews = Review.page(params[:page])
   end
 
   def search
     @q = Review.ransack(params[:q])
-    @reviews = @q.result(distinct: true)
+    @reviews = @q.result(distinct: true).page(params[:page])
   end
   
   def destroy
