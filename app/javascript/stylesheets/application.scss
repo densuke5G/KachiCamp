@@ -6,14 +6,78 @@
   font-family: 'Zen Maru Gothic', sans-serif;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 head {
   background-color: #83cddb;
 }
 
 footer {
   background-color: #a4a6a4;
+  margin-top: auto;
+  width: 100%;
+  height: 30px;
 }
 
 h3 {
     font-weight: bold;
+    padding: 1rem 2rem;
+    background-color: #83cddb;
+    border-radius: 100vh;
+    color: #fff;
+    text-align: center;
+}
+
+.heading {
+  padding: 1rem 2rem;
+  background-color: #83cddb;
+  border-radius: 100vh;
+  color: #fff;
+  text-align: center;
+}
+// ボタン
+.btn_orange {
+  background-color: #f08e42;
+  color: #fff;
+}
+
+.btn_water {
+  background-color: #83cddb;
+  color: #fff;
+}
+
+.review_comment {
+  position: relative;
+  padding: 1.5rem 2rem;
+  border: 3px solid #d8d8d8;
+  border-radius: 10px;
+  background: #f9f9f9;
+}
+
+.review_comment:before {
+  position: absolute;
+  bottom: -14px;
+  left: 1em;
+  width: 0;
+  height: 0;
+  content: '';
+  border-width: 14px 12px 0 12px;
+  border-style: solid;
+  border-color: #d8d8d8 transparent transparent transparent;
+}
+
+.review_comment:after {
+  position: absolute;
+  bottom: -10px;
+  left: 1em;
+  width: 0;
+  height: 0;
+  content: '';
+  border-width: 14px 12px 0 12px;
+  border-style: solid;
+  border-color: #f9f9f9 transparent transparent transparent;
 }

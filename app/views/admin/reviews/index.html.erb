@@ -1,16 +1,22 @@
 <div class="container">
-  <div class="row p-1">
+  <div class="text-center p-1">
     <h3>レビュー一覧</h3>
-    <%= search_form_for @q, url: search_admin_reviews_path do |f| %>
-      <%= f.search_field :user_name_cont, class: "form-control px-4", placeholder: ' ユーザー名で検索' %>
-
-      <%= f.label :文章解析 %>
-      <%= f.radio_button :score_gteq, '0.5' %>良感情
-      <%= f.radio_button :score_lteq, '-0.5' %>悪感情
-      <%= f.submit '検索' %>
-    <% end %>
+    <div class="form-group">
+      <%= search_form_for @q, url: search_admin_reviews_path do |f| %>
+        <%= f.search_field :user_name_cont, class: "form-control mx-auto", placeholder: ' ユーザー名で検索' %>
+        <%= f.submit '検索', class: "" %>
+      <% end %>
+    </div>
+    <div class="form-check">
+      <%= search_form_for @q, url: search_admin_reviews_path do |f| %>
+        <%= f.label :"文章解析", class: "form-check-label" %>
+        <%= f.radio_button :score_gteq, '0.5', class: "form-check-input-radio" %><%= f.label :"良感情", class: "form-check-label" %>
+        <%= f.radio_button :score_lteq, '-0.5', class: "form-check-input-radio" %><%= f.label :"悪感情", class: "form-check-label" %>
+        <%= f.submit '検索', class: "" %>
+      <% end %>
+    </div>
   </div>
-  <div class="row p-1">
+  <div class="mt-3">
     <%= render 'layouts/reviews', reviews: @reviews %>
   </div>
 </div>

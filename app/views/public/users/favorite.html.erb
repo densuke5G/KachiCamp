@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row p-1">
-    <h2>行きたいキャンプ場一覧</h2>
+  <div class="row text-center p-1">
+    <h3>行きたいキャンプ場一覧</h3>
   </div>
   <div class="row">
     <% @favorites.each do |favorite| %>
@@ -110,7 +110,7 @@
         </div>
       <% end %>
     <% end %>
-    <%= paginate @campgrounds %>
+    <%= paginate @favorites %>
   </div>
 </div>
 

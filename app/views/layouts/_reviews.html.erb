@@ -12,7 +12,9 @@
                 <p><%= review.star %> / 5.0</p>
               </div>
               <div class="col-sm-6 col-md-5 m-3">
-                <p><%= review.body %></p>
+                <div class="review_comment">
+                  <p><%= review.body %></p>
+                </div>
               </div>
               <div class="col-sm-6 col-md-3 m-3">
                 <% if review.user.profile_image.present? %>
@@ -40,7 +42,7 @@
                   <span class="btn btn-info m-2"><%= review.score %>普感情</span>
                 <% end %>
               <% end %>
-              <%= link_to "レビューを削除する", admin_review_path(review.id), method: :delete, class: "btn btn-danger mt-2" %>
+              <%= link_to "レビューを削除する", admin_review_path(review.id), method: :delete, class: "btn btn_orange rounded-pill w-50 m-auto mt-2" %>
             </div>
           <% end %>
         </div>

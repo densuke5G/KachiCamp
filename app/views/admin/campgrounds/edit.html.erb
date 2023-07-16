@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row p-1">
+  <div class="text-center p-1">
     <h3>キャンプ場編集</h3>
   </div>
   <div class="row">
@@ -7,137 +7,137 @@
       <%= form_with model: @campground, url: admin_campground_path, method: :patch, class: 'new_campground', local: true do |f| %>
       <%= render "public/shared/error_messages", resource: @campground %>
         <div class="actions p-1">
-          <%= f.submit "変更を保存" ,class: 'btn btn-sm btn-success' %>
+          <%= f.submit "変更を保存" ,class: 'btn btn_orange rounded-pill w-50 m-auto my-2' %>
         </div>
 
-          <div class="row mb-2">
+          <div class="row form-group mb-2">
             <div class="col-sm-3 col-5 text-left pl-2">
               <p>承認ステータス</p>
             </div>
             <div class="col-sm-7 col-5 text-left px-0">
-              <%= f.select :is_confirmed, Campground.is_confirmeds.keys.map {|k| [I18n.t("enums.campground.is_confirmed.#{k}"), k]} %>
+              <%= f.select :is_confirmed, Campground.is_confirmeds.keys.map {|k| [I18n.t("enums.campground.is_confirmed.#{k}"), k]}, class: "form-control" %>
             </div>
           </div>
 
-          <div class="row mb-2">
+          <div class="row form-group mb-2">
             <div class="col-sm-3 col-5 text-left pl-2">
               <p>却下理由(却下する場合のみ記載)</p>
             </div>
             <div class="col-sm-7 col-5 text-left px-0">
-              <%= f.text_area :rejection_reason, autofocus: true, class: "" %>
+              <%= f.text_area :rejection_reason, autofocus: true, class: "form-control" %>
             </div>
           </div>
 
-          <div class="row mb-2">
+          <div class="row form-group mb-2">
             <div class="col-sm-3 col-5 text-left pl-2">
               <p>キャンプ場画像</p>
             </div>
             <div class="col-sm-7 col-5 text-left px-0">
-              <%= f.file_field :image, autofocus: true, accept: "image/*" %>
+              <%= f.file_field :image, autofocus: true, accept: "image/*", class: "form-control-file" %>
             </div>
           </div>
 
-          <div class="row mb-2">
+          <div class="row form-group mb-2">
             <div class="col-sm-3 col-5 text-left pl-2">
               <p>キャンプ場名</p>
             </div>
             <div class="col-sm-7 col-5 text-left px-0">
-              <%= f.text_field :name, autofocus: true, class: "" %>
+              <%= f.text_field :name, autofocus: true, class: "form-control" %>
             </div>
           </div>
 
-          <div class="row mb-2">
+          <div class="row form-group mb-2">
             <div class="col-sm-3 col-5 text-left pl-2">
               <p>説明</p>
             </div>
             <div class="col-sm-7 col-5 text-left px-0">
-              <%= f.text_area :description, autofocus: true, placeholder: "キャンプ場の説明", class: "width:100%" %>
+              <%= f.text_area :description, autofocus: true, placeholder: "キャンプ場の説明", rows: "5", class: "form-control" %>
             </div>
           </div>
 
-          <div class="row mb-2">
+          <div class="row form-group mb-2">
             <div class="col-sm-3 col-5 text-left pl-2">
               <p>住所</p>
             </div>
             <div class="col-sm-7 col-5 text-left px-0">
-              <%= f.text_field :address, autofocus: true, placeholder: "東京都港区六本木３丁目２−１", class: "" %>
+              <%= f.text_field :address, autofocus: true, placeholder: "東京都港区六本木３丁目２−１", class: "form-control" %>
             </div>
           </div>
 
-          <div class="row mb-2">
+          <div class="row form-group mb-2">
             <div class="col-sm-3 col-5 text-left pl-2">
               <p>電話番号</p>
             </div>
             <div class="col-sm-7 col-5 text-left px-0">
-              <%= f.text_field :phone_number, autofocus: true, placeholder: "例：XXX-XXXX-XXX", class: "" %>
+              <%= f.text_field :phone_number, autofocus: true, placeholder: "例：XXX-XXXX-XXX", class: "form-control" %>
             </div>
           </div>
 
-          <div class="row mb-2">
+          <div class="row form-group mb-2">
             <div class="col-sm-3 col-5 text-left pl-2">
               <p>営業時間</p>
             </div>
             <div class="col-sm-7 col-5 text-left px-0">
-              <%= f.text_field :business_hours, autofocus: true, placeholder: "例：XX:XX~XX:XX", class: "" %>
+              <%= f.text_field :business_hours, autofocus: true, placeholder: "例：XX:XX~XX:XX", class: "form-control" %>
             </div>
           </div>
 
-          <div class="row mb-2">
+          <div class="row form-group mb-2">
             <div class="col-sm-3 col-5 text-left pl-2">
               <p>チェックイン</p>
             </div>
             <div class="col-sm-7 col-5 text-left px-0">
-              <%= f.text_field :check_in, autofocus: true, placeholder: "例：XX:XX~", class: "" %>
+              <%= f.text_field :check_in, autofocus: true, placeholder: "例：XX:XX~", class: "form-control" %>
             </div>
           </div>
 
-          <div class="row mb-2">
+          <div class="row form-group mb-2">
             <div class="col-sm-3 col-5 text-left pl-2">
               <p>チェックアウト</p>
             </div>
             <div class="col-sm-7 col-5 text-left px-0">
-              <%= f.text_field :check_out, autofocus: true, placeholder: "例：~XX:XX", class: "" %>
+              <%= f.text_field :check_out, autofocus: true, placeholder: "例：~XX:XX", class: "form-control" %>
             </div>
           </div>
 
-          <div class="row mb-2">
+          <div class="row form-group mb-2">
             <div class="col-sm-3 col-5 text-left pl-2">
               <p>最寄り駅</p>
             </div>
             <div class="col-sm-7 col-5 text-left px-0">
-              <%= f.text_field :station_line, autofocus: true, placeholder: "JR青梅", class: "" %><%= f.label :"線" %>
-              <%= f.text_field :station_name, autofocus: true, placeholder: "駅名", class: "" %><%= f.label :"駅" %><br>
-              <%= f.label :"徒歩" %><%= f.text_field :station_walk, autofocus: true, placeholder: "", class: "" %><%= f.label :"分" %>
+              <%= f.text_field :station_line, autofocus: true, placeholder: "JR青梅", class: "form-control" %><%= f.label :"線" %>
+              <%= f.text_field :station_name, autofocus: true, placeholder: "駅名", class: "form-control" %><%= f.label :"駅" %><br>
+              <%= f.label :"徒歩" %><%= f.text_field :station_walk, autofocus: true, placeholder: "", class: "form-control" %><%= f.label :"分" %>
             </div>
           </div>
 
-          <div class="row mb-2">
+          <div class="row form-group mb-2">
             <div class="col-sm-3 col-5 text-left pl-2">
               <p>最寄りバス停</p>
             </div>
             <div class="col-sm-7 col-5 text-left px-0">
-              <%= f.text_field :busstop_line, autofocus: true, placeholder: "バス業者", class: "" %>
-              <%= f.text_field :busstop_name, autofocus: true, placeholder: "バス停名", class: "" %><%= f.label :"バス停" %><br>
-              <%= f.label :"徒歩" %><%= f.text_field :busstop_walk, autofocus: true, placeholder: "", class: "" %><%= f.label :"分" %>
+              <%= f.text_field :busstop_line, autofocus: true, placeholder: "バス業者", class: "form-control" %>
+              <%= f.text_field :busstop_name, autofocus: true, placeholder: "バス停名", class: "form-control" %><%= f.label :"バス停" %><br>
+              <%= f.label :"徒歩" %><%= f.text_field :busstop_walk, autofocus: true, placeholder: "", class: "form-control" %><%= f.label :"分" %>
             </div>
           </div>
 
-          <div class="row mb-2">
+          <div class="row form-group mb-2">
             <div class="col-sm-3 col-5 text-left pl-2">
               <p>キャンプ場URL</p>
             </div>
             <div class="col-sm-7 col-5 text-left px-0">
-              <%= f.text_field :camp_url, autofocus: true, placeholder: "https~~", class: "" %>
+              <%= f.text_field :camp_url, autofocus: true, placeholder: "https~~", class: "form-control" %>
             </div>
           </div>
 
-          <div class="row mb-2">
+          <div class="row form-group mb-2">
             <div class="col-sm-3 col-5 text-left pl-2">
               <p>タグ</p>
             </div>
             <div class="col-sm-7 col-5 text-left px-0">
               <%= f.label :"(,で区切ると複数タグ登録できます)" %><br>
-              <%= f.text_field :tag_name, autofocus: true, placeholder: "直火OK,ソロキャンプ", class: "" %>
+              <%= f.text_field :tag_name, autofocus: true, placeholder: "直火OK,ソロキャンプ", class: "form-control" %>
             </div>
           </div>
 
