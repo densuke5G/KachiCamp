@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_user! 
-  
+  before_action :authenticate_user!
+
   def show
   end
 
@@ -8,7 +8,7 @@ class Public::UsersController < ApplicationController
   end
 
   def favorite
-    @favorites = Favorite.where(user_id: current_user.id)
+    @favorites = Favorite.where(user_id: current_user.id).page(params[:page])
     # @campgrounds = Campground.where(id: @favorites.campground_id)
   end
 

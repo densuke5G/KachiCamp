@@ -1,26 +1,26 @@
 <div class="container">
-  <div class="row p-1">
-    <h2>レビュー投稿</h2>
+  <div class="text-center p-1">
+    <h3>レビュー投稿</h3>
   </div>
   <%= render "public/shared/error_messages", resource: @review %>
   <div class="row">
     <div class="col-md-8">
       <%= form_with model: @review, url: reviews_path, class: 'new_review', local: true do |f| %>
-        <div class="row mb-2">
+        <div class="form-group row mb-2">
           <div class="col-sm-3 col-5 text-left pl-2">
             <p>タイトル</p>
           </div>
           <div class="col-sm-7 col-5 text-left px-0">
-            <%= f.text_field :title, autofocus: true, class: "" %>
+            <%= f.text_field :title, autofocus: true, class: "form-control" %>
           </div>
         </div>
 
-        <div class="row mb-2">
+        <div class="form-group row mb-2">
           <div class="col-sm-3 col-5 text-left pl-2">
             <p>本文</p>
           </div>
           <div class="col-sm-7 col-5 text-left px-0">
-            <%= f.text_area :body, autofocus: true, class: "" %>
+            <%= f.text_area :body, autofocus: true, rows: "4", class: "form-control" %>
           </div>
         </div>
 
@@ -32,7 +32,7 @@
         <%= f.hidden_field :campground_id, :value => params[:campground_id] %>
 
         <div class="actions">
-          <%= f.submit "投稿" ,class: 'btn btn-sm btn-success' %>
+          <%= f.submit "投稿" ,class: 'btn btn_orange rounded-pill w-50 m-auto my-2' %>
         </div>
 
         <!--retyを用いたjavascript-->

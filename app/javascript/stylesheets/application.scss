@@ -6,14 +6,120 @@
   font-family: 'Zen Maru Gothic', sans-serif;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 head {
   background-color: #83cddb;
 }
 
 footer {
   background-color: #a4a6a4;
+  margin-top: auto;
+  width: 100%;
+  height: 30px;
 }
 
 h3 {
-    font-weight: bold;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  background-color: #83cddb;
+  border-radius: 100vh;
+  color: #fff;
+  text-align: center;
+}
+
+h1, h2, h4 {
+  font-weight: bold;
+}
+
+.heading {
+  padding: 1rem 2rem;
+  background-color: #83cddb;
+  border-radius: 100vh;
+  color: #fff;
+  text-align: center;
+}
+// ボタン
+.btn_orange {
+  background-color: #f08e42;
+  color: #fff;
+}
+
+.btn_water {
+  background-color: #83cddb;
+  color: #fff;
+}
+
+.badge {
+  background-color: #f08e42;
+  color: #fff;
+}
+
+.fa-tag {
+  color: #83cddb;
+}
+
+.review_comment {
+  position: relative;
+  padding: 1.5rem 2rem;
+  border: 3px solid #d8d8d8;
+  border-radius: 10px;
+  background: #f9f9f9;
+}
+
+.review_comment:before {
+  position: absolute;
+  bottom: -14px;
+  left: 1em;
+  width: 0;
+  height: 0;
+  content: '';
+  border-width: 14px 12px 0 12px;
+  border-style: solid;
+  border-color: #d8d8d8 transparent transparent transparent;
+}
+
+.review_comment:after {
+  position: absolute;
+  bottom: -10px;
+  left: 1em;
+  width: 0;
+  height: 0;
+  content: '';
+  border-width: 14px 12px 0 12px;
+  border-style: solid;
+  border-color: #f9f9f9 transparent transparent transparent;
+}
+// Topページ
+.carousel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.article-card {
+  z-index: 1;
+  padding: 0.5em 1em;
+  margin: 0 0;
+  color: #2c2c2f;
+  background: rgba(255,255,255,0.7);
+  position: absolute;
+  top: 15%;
+  left: 17%;
+}
+
+.gold-crown {
+  color: #FFD700;
+}
+
+.silver-crown {
+  color: #C0C0C0;
+}
+
+.bronze-crown {
+  color: #C47222;
 }

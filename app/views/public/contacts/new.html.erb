@@ -11,7 +11,7 @@
               <p>お名前</p>
             </div>
             <div class="col-sm-7 col-5 text-left px-0">
-              <%= f.text_field :name, autofocus: true, class: "" %>
+              <%= f.text_field :name, autofocus: true, class: "form-control" %>
             </div>
           </div>
 
@@ -20,12 +20,12 @@
               <p>お問い合わせ内容</p>
             </div>
             <div class="col-sm-7 col-5 text-left px-0">
-              <%= f.text_area :content, autofocus: true, placeholder: "お問い合わせ内容を入力してください", class: "width:100%" %>
+              <%= f.text_area :content, autofocus: true, placeholder: "お問い合わせ内容を入力してください", rows: "5", class: "form-control" %>
             </div>
           </div>
 
         <div class="actions">
-          <%= f.submit "確認画面へ" ,class: 'btn btn-sm btn-success' %>
+          <%= f.submit "確認画面へ" ,class: 'btn btn_orange rounded-pill w-50 m-auto my-2' %>
         </div>
       <% end %>
   </div>

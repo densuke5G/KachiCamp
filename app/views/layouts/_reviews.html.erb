@@ -1,50 +1,48 @@
 <div class="row">
   <div class="col-md-12">
     <% reviews.each do |review| %>
-      <div class="row mb-2">
-        <div class="col-sm-12 col-md-8">
-          <div class="card shadow bg-white rounded my-2">
-            <div class="row mb-2">
-              <div class="col-sm-6 col-md-3 m-3">
-                <h5 class="fw-bold text-center"><%= review.title %></h5>
-                <!--JavaScript呼び出し-->
-                <div id="star-rate<%= review.id %>"></div>
-                <p><%= review.star %> / 5.0</p>
-              </div>
-              <div class="col-sm-6 col-md-5 m-3">
+      <div class="card shadow bg-white rounded my-2">
+        <div class="row mb-2">
+          <div class="col-sm-6 col-md-3 m-3">
+            <h5 class="fw-bold text-center"><%= review.title %></h5>
+            <!--JavaScript呼び出し-->
+            <div id="star-rate<%= review.id %>"></div>
+              <p><%= review.star %> / 5.0</p>
+            </div>
+            <div class="col-sm-6 col-md-8 m-3">
+              <div class="review_comment">
                 <p><%= review.body %></p>
               </div>
-              <div class="col-sm-6 col-md-3 m-3">
-                <% if review.user.profile_image.present? %>
-                  <%= image_tag review.user.profile_image, class:"rounded-circle", size:"50x50" %>
-                <% else %>
-                  <i class="fas fa-user-plus fa-4x ms-3"></i>
-                <% end %>
-                <% if admin_signed_in? %>
-                  <p><%= link_to "#{review.user.name}さん", admin_user_path(review.user.id) %></p>
-                <% else %>
-                  <p><%= review.user.name %> さん</p>
-                <% end %>
-              </div>
+            </div>
+            <div class="col-sm-6 col-md-3 m-3">
+              <% if review.user.profile_image.present? %>
+                <%= image_tag review.user.profile_image, class:"rounded-circle", size:"50x50" %>
+              <% else %>
+                <i class="fas fa-user-plus fa-4x ms-3"></i>
+              <% end %>
+              <% if admin_signed_in? %>
+                <p><%= link_to "#{review.user.name}さん", admin_user_path(review.user.id) %></p>
+              <% else %>
+                <p><%= review.user.name %> さん</p>
+              <% end %>
             </div>
           </div>
-          <% if admin_signed_in? %>
-            <div class="row ml-2">
-              <!--レビューをAPIの分析結果によって色分けして表示-->
-              <% if review.score.present? %>
-                <% if review.score < -0.5 %>
-                  <span class="btn btn-danger m-2"><%= review.score %>悪感情</span>
-                <% elsif review.score > 0.5 %>
-                  <span class="btn btn-success m-2"><%= review.score %>良感情</span>
-                <% else %>
-                  <span class="btn btn-info m-2"><%= review.score %>普感情</span>
-                <% end %>
-              <% end %>
-              <%= link_to "レビューを削除する", admin_review_path(review.id), method: :delete, class: "btn btn-danger mt-2" %>
-            </div>
-          <% end %>
         </div>
-      </div>
+        <% if admin_signed_in? %>
+          <div class="row ml-2">
+             <!--レビューをAPIの分析結果によって色分けして表示-->
+            <% if review.score.present? %>
+              <% if review.score < -0.5 %>
+                <span class="btn btn-danger m-2"><%= review.score %>悪感情</span>
+              <% elsif review.score > 0.5 %>
+                <span class="btn btn-success m-2"><%= review.score %>良感情</span>
+              <% else %>
+                <span class="btn btn-info m-2"><%= review.score %>普感情</span>
+              <% end %>
+            <% end %>
+            <%= link_to "レビューを削除する", admin_review_path(review.id), method: :delete, class: "btn btn_orange rounded-pill w-50 m-auto mt-2" %>
+          </div>
+        <% end %>
       <script>
         let elem<%= review.id %> = document.querySelector('#star-rate<%= review.id %>');
         let opt<%= review.id %> = {

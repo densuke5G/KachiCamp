@@ -1,34 +1,32 @@
 <div class="container">
-  <div class="row p-1">
+  <div class="text-center p-1">
     <h3>ユーザー情報編集</h3>
   </div>
   <%= render "public/shared/error_messages", resource: current_user %>
   <div class="row">
     <div class="col-md-8 mx-auto">
       <%= form_with model: current_user, url: update_users_path, method: :patch, class: 'edit_user', local: true do |f| %>
-        <div class="actions p-1">
-          <%= f.submit "変更を保存" ,class: 'btn btn-sm btn-success' %>
-        </div>
-
-        <div class="row mb-2">
+        <div class="row form-group mb-2">
           <div class="col-sm-3 col-5 text-left pl-2">
             <p>プロフィール画像</p>
           </div>
           <div class="col-sm-7 col-5 text-left px-0">
-            <%= f.file_field :profile_image, autofocus: true, accept: "image/*" %>
+            <%= f.file_field :profile_image, autofocus: true, accept: "image/*", class: "form-control-file" %>
           </div>
         </div>
 
-        <div class="row mb-2">
+        <div class="row form-group mb-2">
           <div class="col-sm-3 col-5 text-left pl-2">
             <p>ユーザー名</p>
           </div>
           <div class="col-sm-7 col-5 text-left px-0">
-            <%= f.text_field :name, autofocus: true, class: "" %>
+            <%= f.text_field :name, autofocus: true, class: "form-control" %>
           </div>
         </div>
 
-
+        <div class="p-1 form-group">
+          <%= f.submit "変更を保存" ,class: 'btn btn_orange rounded-pill w-50 m-auto my-2' %>
+        </div>
       <% end %>
     </div>
   </div>

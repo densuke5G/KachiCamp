@@ -1,14 +1,16 @@
 <div class="container">
-  <div class="row mb-1">
-    <div class="text-center">
-      <%= link_to "気になるキャンプ場", favorite_users_path, class: "btn btn-outline-success rounded-pill w-50 m-auto my-2" %>
-      <%= link_to "投稿レビュー", reviews_path, class: "btn btn-outline-info rounded-pill w-50 m-auto my-2" %>
-      <%= link_to "キャンプ場申請状況", status_campgrounds_path, class: "btn btn-outline-secondary rounded-pill w-50 m-auto my-2" %>
-      <%= link_to "お問い合わせはこちら", new_contact_path, class: "btn btn-outline-primary rounded-pill w-50 m-auto my-2" %>
-     </div>
+  <div class="text-center p-1">
+    <h3>登録情報</h3>
   </div>
-  <div class="row p-1">
-    <h2>登録情報</h2>
+  <div class="row mb-1">
+    <div class="col-md-6 text-center mb-2">
+      <%= link_to "気になるキャンプ場", favorite_users_path, class: "btn btn_orange rounded-pill w-50 m-auto my-2" %>
+      <%= link_to "投稿レビュー", reviews_path, class: "btn btn_water rounded-pill w-50 m-auto my-2" %>
+    </div>
+    <div class="col-md-6 text-center mb-2">
+      <%= link_to "キャンプ場申請状況", status_campgrounds_path, class: "btn btn_orange rounded-pill w-50 m-auto my-2" %>
+      <%= link_to "お問い合わせはこちら", new_contact_path, class: "btn btn_water rounded-pill w-50 m-auto my-2" %>
+     </div>
   </div>
   <div class="row mb-1">
     <% if current_user.profile_image.blank? %>
@@ -26,6 +28,6 @@
     </div>
   </div>
   <div class="row mb-2">
-    <%= link_to "編集する", edit_users_path, class: "btn btn-success my-2" %>
+    <%= link_to "編集する", edit_users_path, class: "btn btn_orange rounded-pill w-50 m-auto my-2success my-2" %>
   </div>
 </div>

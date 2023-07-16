@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row p-1">
-    <h2>行きたいキャンプ場一覧</h2>
+  <div class="row text-center p-1">
+    <h3>行きたいキャンプ場一覧</h3>
   </div>
   <div class="row">
     <% @favorites.each do |favorite| %>
@@ -18,11 +18,11 @@
               <% end %>
             <% end %>
             <div class="card-body">
-              <h5 class="card-title">
+              <h4 class="card-title">
                 <%= favorite.campground.name %>
-              </h5>
+              </h4>
               <div class="rating d-flex align-items-center m-2">
-                <%#= image_tag "star-on.png",class: "me-2" %><%#= rating(campground.reviews) %>
+                <%= image_tag "star-on.png",class: "mr-2" %><%= campground.avg_score %> ( レビュー：<%= campground.reviews.count %>件 )
               </div>
               <div class="card-favorite">
                 <% if favorite.campground.favorited_by?(current_user) %>
@@ -42,7 +42,9 @@
                 </div>
                 <div class="col-5 text-left px-0">
                   <% favorite.campground.tags.each do |tag| %>
-                    <i class="fas fa-tag"><%= tag.tag_name %></i>
+                    <i class="fas fa-tag">
+                      <span class="badge badge-pill"><%= tag.tag_name %></span>
+                    </i>
                   <% end %>
                 </div>
               </div>
@@ -110,7 +112,7 @@
         </div>
       <% end %>
     <% end %>
-    <%= paginate @campgrounds %>
+    <%= paginate @favorites %>
   </div>
 </div>
 
