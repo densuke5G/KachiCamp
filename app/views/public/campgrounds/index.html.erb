@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row p-1">
-    <h2>キャンプ場一覧</h2>
+  <div class="text-center p-1">
+    <h3>キャンプ場一覧</h3>
   </div>
   <div class="row">
     <% @campgrounds.each do |campground| %>
@@ -12,11 +12,11 @@
               <%= image_tag campground.get_image(350, 350) %>
             <% end %>
             <div class="card-body">
-              <h5 class="card-title">
+              <h4 class="card-title">
                 <%= campground.name %>
-              </h5>
+              </h4>
               <div class="rating d-flex align-items-center m-2">
-                <%= image_tag "star-on.png",class: "mr-2" %><%= campground.avg_score %> ( <%= campground.reviews.count %> )
+                <%= image_tag "star-on.png",class: "mr-2" %><%= campground.avg_score %> ( レビュー：<%= campground.reviews.count %>件 )
               </div>
 
               <div class="row mb-2">
@@ -25,7 +25,9 @@
                 </div>
                 <div class="col-5 text-left px-0">
                   <% campground.tags.each do |tag| %>
-                    <i class="fas fa-tag"><%= tag.tag_name %></i>
+                    <i class="fas fa-tag">
+                      <span class="badge badge-pill"><%= tag.tag_name %></span>
+                    </i>
                   <% end %>
                 </div>
               </div>
@@ -94,5 +96,11 @@
       <% end %>
     <% end %>
     <%= paginate @campgrounds %>
+  </div>
+  <div class="text-center mb-2">
+    <h5 class="mt-3">キャンプ場の情報をご存じでしたら情報提供にご協力をお願いします!(会員登録が必要です)</h5>
+  </div>
+  <div class="text-center mb-2">
+      <%= link_to "情報を提供する", new_campground_path, class: "btn btn_orange rounded-pill w-50 m-auto my-2" %>
   </div>
 </div>

@@ -1,116 +1,76 @@
 <div class="container">
   <div class="row mb-2">
-    <div id="carouselFade" class="carousel slide carousel-fade" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <%= image_tag "camp-top01.jpg", class: "bd-placeholder-img bd-placeholder-img-lg d-block w-100", alt: "キャンプ場風景写真" %>
-        </div>
-        <div class="carousel-item">
-          <%= image_tag "camp-top02.jpg", class: "bd-placeholder-img bd-placeholder-img-lg d-block w-100" %>
-        </div>
-        <div class="carousel-item">
-          <%= image_tag "camp-top03.jpg", class: "bd-placeholder-img bd-placeholder-img-lg d-block w-100" %>
+    <div class="carousel">
+      <div id="carouselFade" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <%= image_tag "camp-top01.jpg", class: "bd-placeholder-img bd-placeholder-img-lg d-block w-100", alt: "キャンプ場風景写真" %>
+          </div>
+          <div class="carousel-item">
+            <%= image_tag "camp-top02.jpg", class: "bd-placeholder-img bd-placeholder-img-lg d-block w-100" %>
+          </div>
+          <div class="carousel-item">
+            <%= image_tag "camp-top03.jpg", class: "bd-placeholder-img bd-placeholder-img-lg d-block w-100" %>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="article-card col-lg-8 text-center">
-      <p class="mb-0 pt-3">
-        <span class="m-2">「徒歩で行けるキャンプ場」を探すためのサイト</span>
-      </p>
-      <h1 class="site-title">
-        <span class="m-5">徒歩キャン</span>
-      </h1>
+      <div class="article-card col-8 text-center">
+        <p class="mb-0 pt-3">
+          <span class="m-2">「徒歩で行けるキャンプ場」を探すためのサイト</span>
+        </p>
+        <div class="site-title mt-2">
+          <%= image_tag "camp-logo.png", size: "170x50" %>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row mb-2 d-flex justify-content-center">
     <div class="text-center">
-      <%= link_to "キャンプ場を探す", campgrounds_path, class: "btn btn-success rounded-pill m-auto my-2" %>
+      <%= link_to "地図からキャンプ場を探す", map_campgrounds_path, class: "btn btn_orange rounded-pill m-auto my-2" %>
     </div>
   </div>
 
+  <div class="text-center mt-3">
+    <h3>口コミランキング</h3>
+  </div>
   <div class="row mb-2">
-      <% @rankcampgrounds.each_with_index do |campground,i| %>
-        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-          <div class="card shadow rounded my-5 position-relative">
-            <span class="position-absolute top-0 translate-middle fw-bold fa-stack">
-              <% if i == 0 %>
-                <i class="fas fa-crown fa-stack-2x gold-crown"></i>
-              <% elsif i == 1 %>
-                <i class="fas fa-crown fa-stack-2x silver-crown"></i>
-              <% elsif i == 2 %>
-                <i class="fas fa-crown fa-stack-2x bronze-crown"></i>
-              <% end %>
-              <i class="position-absolute top-0 text-white fa-stack-1x ranking-number"> <%= "#{i+1}" %></i>
-            </span>
-            <%= link_to campground_path(campground) do %>
-              <%= image_tag campground.get_image(350, 350) %>
+    <% @campgrounds.each_with_index do |campground,i| %>
+      <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+        <div class="card shadow rounded my-5 position-relative">
+          <span class="position-absolute top-0 translate-middle fw-bold fa-stack">
+            <% if i == 0 %>
+              <i class="fas fa-crown fa-stack-2x gold-crown"></i>
+            <% elsif i == 1 %>
+              <i class="fas fa-crown fa-stack-2x silver-crown"></i>
+            <% elsif i == 2 %>
+              <i class="fas fa-crown fa-stack-2x bronze-crown"></i>
             <% end %>
-            <div class="card-body bg-white">
-              <h5 class="card-title">
-                <%= campground.name %>
-              </h5>
-              <div class="rating d-flex align-items-center m-2">
-                <%= image_tag "star-on.png",class: "mr-2" %><%= campground.avg_score %> ( <%= campground.reviews.count %> )
-              </div>
-              <div class="mb-1">
-                <i class="fas fa-map-marker-alt fa-fw"></i>
-                <cite title="<%= campground.address %>">
-                <%= campground.address %>
-              </div>
+            <i class="position-absolute top-0 text-white fa-stack-1x ranking-number"> <%= "#{i+1}" %></i>
+          </span>
+          <%= link_to campground_path(campground) do %>
+            <%= image_tag campground.get_image(350, 350) %>
+          <% end %>
+          <div class="card-body bg-white">
+            <h4 class="card-title">
+              <%= campground.name %>
+            </h4>
+            <div class="rating d-flex align-items-center m-2">
+              <%= image_tag "star-on.png",class: "mr-2" %><%= campground.avg_score %> ( <%= campground.reviews.count %> )
+            </div>
+            <div class="mb-1">
+              <i class="fas fa-map-marker-alt fa-fw"></i>
+              <cite title="<%= campground.address %>">
+              <%= campground.address %>
             </div>
           </div>
         </div>
-      <% end %>
+      </div>
+    <% end %>
   </div>
-  <div class="row mb-2">
-    <h3>マップ</h3>
-    <div id="map"></div>
+  <div class="text-center mb-2">
+    <h5 class="mt-3">キャンプ場の情報をご存じでしたら情報提供にご協力をお願いします!(会員登録が必要です)</h5>
   </div>
+  <div class="text-center mb-2">
+      <%= link_to "情報を提供する", new_campground_path, class: "btn btn_orange rounded-pill w-50 m-auto my-2" %>
+  </div>>
 </div>
-
-<style>
-#map {
-  height: 600px;
-  width: 100%;
-}
-</style>
-
-<!-- js部分 -->
-<script>
-    function initMap() {
-
-      //初期表示位置
-      let latlng = new google.maps.LatLng(35.80, 139.09);
-
-      let map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 8.0,
-          center: latlng,
-      });
-      let transitLayer = new google.maps.TransitLayer();
-      transitLayer.setMap(map);
-
-      //複数マーカー 表示
-      <% @campgrounds.each do |campground|%>
-        <% if campground.confirmed? %>
-          ( function() {
-            let markerLatLng = { lat: <%= campground.latitude %>, lng: <%= campground.longitude %> }; // 緯度経度のデータ作成
-            let marker = new google.maps.Marker({
-              position: markerLatLng,
-              map: map
-            });
-      //マーカーをクリックしたとき、詳細情報を表示
-            let infowindow = new google.maps.InfoWindow({
-              position: markerLatLng,
-              content: "<a href='<%= campground_url(campground.id) %>'><%= campground.name %></a>"
-            }); //ここで詳細ページへのリンクを表示させる
-            marker.addListener('click', function() {
-              infowindow.open(map, marker);
-            });
-
-         })();
-        <% end %>
-      <% end %>
-  }
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>

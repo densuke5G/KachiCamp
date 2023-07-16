@@ -31,7 +31,9 @@
         </div>
         <div class="col-sm-7 col-5 text-left px-0">
           <% @campground_tags.each do |tag| %>
-            <i class="fas fa-tag"><%= tag.tag_name %></i>
+            <i class="fas fa-tag">
+              <span class="badge badge-pill"><%= tag.tag_name %></span>
+            </i>
           <% end %>
         </div>
       </div>
