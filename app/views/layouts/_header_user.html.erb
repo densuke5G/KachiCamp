@@ -2,7 +2,7 @@
   <i class="fas fa-search ms-2" style=" margin-top: 12px; margin-left: 8px; position:absolute;"></i>
   <div class="form-group form-inline">
     <%= search_form_for @q, url: search_campgrounds_path do |f| %>
-      <%= f.search_field :tags_tag_name_cont, class: "form-control px-4", placeholder: ' タグを入力して検索' %>
+      <%= f.search_field :name_or_tags_tag_name_cont, class: "form-control px-4", placeholder: ' タグ・名前で検索' %>
       <%= f.submit '検索', class: "form-control" %>
     <% end %>
   </div>
