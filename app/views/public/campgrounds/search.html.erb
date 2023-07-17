@@ -3,106 +3,14 @@
     <h3>検索結果</h3>
   </div>
   <div class="row">
-  <% if @campgrounds == [] %>
-    <h4 class="mt-3 text-center">検索結果がありません。</h4>
-    <div class="p-2 text-center">
-      <%= image_tag 'animal_okojo_summer.png', size:"300x300" %>
-    </div>
-  <% else %>
-    <% @campgrounds.each do |campground| %>
-    <!--承認ステータスが承認済のもののみ表示-->
-      <% if campground.confirmed? %>
-        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-          <div class="card shadow bg-white rounded my-5">
-            <%= link_to campground_path(campground) do %>
-              <%= image_tag campground.get_image(350, 350) %>
-            <% end %>
-            <div class="card-body">
-              <h4 class="card-title">
-                <%= campground.name %>
-              </h4>
-              <div class="rating d-flex align-items-center m-2">
-                <%= image_tag "star-on.png",class: "mr-2" %><%= campground.avg_score %> ( レビュー：<%= campground.reviews.count %>件 )
-              </div>
-
-              <div class="row mb-2">
-                <div class="col-5 text-left pl-2">
-                  <p>タグ</p>
-                </div>
-                <div class="col-5 text-left px-0">
-                  <% campground.tags.each do |tag| %>
-                    <i class="fas fa-tag">
-                      <span class="badge badge-pill"><%= tag.tag_name %></span>
-                    </i>
-                  <% end %>
-                </div>
-              </div>
-
-              <div class="row mb-2">
-                <div class="col-5 text-left pl-2">
-                  <p>住所</p>
-                </div>
-                <div class="col-5 text-left px-0">
-                  <%= campground.address %>
-                </div>
-              </div>
-
-              <div class="row mb-2">
-                <div class="col-5 text-left pl-2">
-                  <p>電話番号</p>
-                </div>
-                <div class="col-5 text-left px-0">
-                  <%= campground.phone_number %>
-                </div>
-              </div>
-
-              <div class="row mb-2">
-                <div class="col-5 text-left pl-2">
-                  <p>チェックイン</p>
-                </div>
-                <div class="col-5 text-left px-0">
-                  <%= campground.check_in %>
-                </div>
-              </div>
-
-              <div class="row mb-2">
-                <div class="col-5 text-left pl-2">
-                  <p>チェックアウト</p>
-                </div>
-                <div class="col-5 text-left px-0">
-                  <%= campground.check_out %>
-                </div>
-              </div>
-
-              <div class="row mb-2">
-                <div class="col-5 text-left pl-2">
-                  <p>最寄り駅</p>
-                </div>
-                <div class="col-5 text-left px-0">
-                  <%= campground.station_line %>線<br>
-                  <%= campground.station_name %>駅<br>
-              徒歩<%= campground.station_walk %>分
-                </div>
-              </div>
-
-              <div class="row mb-2">
-                <div class="col-5 text-left pl-2">
-                  <p>最寄りバス停</p>
-                </div>
-                <div class="col-5 text-left px-0">
-                  <%= campground.busstop_line %><br>
-                  <%= campground.busstop_name %>バス停<br>
-              徒歩<%= campground.busstop_walk %>分
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      <% end %>
+    <% if @campgrounds == [] %>
+      <h4 class="mt-3 text-center">検索結果がありません。</h4>
+      <div class="p-2 text-center">
+        <%= image_tag 'animal_okojo_summer.png', size:"300x300" %>
+      </div>
+    <% else %>
+      <%= render 'layouts/campindex', campgrounds: @campgrounds %>
     <% end %>
-  <% end %>
-  <%= paginate @campgrounds %>
   </div>
   <div class="text-center mb-2">
     <h5 class="mt-3">キャンプ場の情報をご存じでしたら情報提供にご協力をお願いします!(会員登録が必要です)</h5>

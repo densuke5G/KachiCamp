@@ -7,12 +7,12 @@ class Public::CampgroundsController < ApplicationController
   end
 
   def index
-    @campgrounds = Campground.page(params[:page])
+    @campgrounds = Campground.page(params[:page]).per(3)
   end
 
   def search
     @q = Campground.ransack(params[:q])
-    @campgrounds = @q.result(distinct: true).page(params[:page])
+    @campgrounds = @q.result(distinct: true).page(params[:page]).per(3)
   end
 
   def map
@@ -22,7 +22,7 @@ class Public::CampgroundsController < ApplicationController
   def show
     @campground = Campground.find(params[:id])
     @campground_tags = @campground.tags
-    @reviews = Review.where(campground_id: @campground.id).page(params[:page])
+    @reviews = Review.where(campground_id: @campground.id).page(params[:page]).per(2)
   end
 
   def thanks

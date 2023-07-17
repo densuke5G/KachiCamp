@@ -43,6 +43,11 @@
             <%= link_to "レビューを削除する", admin_review_path(review.id), method: :delete, class: "btn btn_orange rounded-pill w-50 m-auto mt-2" %>
           </div>
         <% end %>
+        <% if user_signed_in? && review.user_id == current_user.id %>
+          <div class="row ml-2">
+            <%= link_to "レビューを削除する", review_path(review.id), method: :delete, class: "btn btn_orange rounded-pill w-50 m-auto mt-2" %>
+          </div>
+        <% end %>
       <script>
         let elem<%= review.id %> = document.querySelector('#star-rate<%= review.id %>');
         let opt<%= review.id %> = {

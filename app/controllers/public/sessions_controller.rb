@@ -37,7 +37,7 @@ class Public::SessionsController < Devise::SessionsController
   if @user.valid_password?(params[:user][:password])
     ## 【処理内容3】
     if @user.valid_password?(params[:user][:password]) && (@user.is_banned == true )
-        flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
+        flash[:notice] = "不適切なユーザーと判断されました。再度ご登録をしてご利用ください。"
         redirect_to root_path
     end
   end

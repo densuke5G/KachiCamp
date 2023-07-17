@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row text-center p-1">
+  <div class="text-center p-1">
     <h3>行きたいキャンプ場一覧</h3>
   </div>
   <div class="row">
@@ -22,7 +22,7 @@
                 <%= favorite.campground.name %>
               </h4>
               <div class="rating d-flex align-items-center m-2">
-                <%= image_tag "star-on.png",class: "mr-2" %><%= campground.avg_score %> ( レビュー：<%= campground.reviews.count %>件 )
+                <%= image_tag "star-on.png",class: "mr-2" %><%= favorite.campground.avg_score %> ( レビュー：<%= favorite.campground.reviews.count %>件 )
               </div>
               <div class="card-favorite">
                 <% if favorite.campground.favorited_by?(current_user) %>

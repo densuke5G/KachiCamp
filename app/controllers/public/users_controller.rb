@@ -8,7 +8,7 @@ class Public::UsersController < ApplicationController
   end
 
   def favorite
-    @favorites = Favorite.where(user_id: current_user.id).page(params[:page])
+    @favorites = Favorite.where(user_id: current_user.id).page(params[:page]).per(3)
     # @campgrounds = Campground.where(id: @favorites.campground_id)
   end
 

@@ -1,12 +1,12 @@
 class Public::ReviewsController < ApplicationController
-  before_action :authenticate_user! 
-  
+  before_action :authenticate_user!
+
   def new
     @review = Review.new
   end
 
   def index
-    @reviews = Review.where(user_id: current_user.id).page(params[:page])
+    @reviews = Review.where(user_id: current_user.id).page(params[:page]).per(3)
   end
 
   def create
@@ -22,6 +22,13 @@ class Public::ReviewsController < ApplicationController
       render :new
     end
 
+  end
+
+  def destroy
+    review = Review.find(params[:id])
+    
+    review.destroy
+    redirect_back fallback_location: root_path, notice:'削除完了しました'
   end
 
 

@@ -42,7 +42,7 @@ Rails.application.routes.draw do
       end
       resource :favorites, only: [:create, :destroy]
     end
-    resources :reviews, only: [:new, :index, :create]
+    resources :reviews, only: [:new, :index, :create, :destroy]
     resources :contacts, only: [:new, :create] do
       collection do
         post 'confirm'
