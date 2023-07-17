@@ -6,7 +6,7 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = Review.where(user_id: current_user.id).page(params[:page])
+    @reviews = Review.where(user_id: current_user.id).page(params[:page]).per(3)
   end
 
   def create
