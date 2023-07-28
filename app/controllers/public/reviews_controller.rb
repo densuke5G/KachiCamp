@@ -37,6 +37,7 @@ class Public::ReviewsController < ApplicationController
   private
 
   def user_check
+    review = Review.find(params[:id])
     unless review.user_id == current_user.id
       redirect_to root_path, notice:'レビューは投稿者しか削除できません'
     end
