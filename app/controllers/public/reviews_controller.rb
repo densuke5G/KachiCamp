@@ -1,5 +1,6 @@
 class Public::ReviewsController < ApplicationController
   before_action :authenticate_user!
+  before_action :user_check, only: [:destroy]
 
   def new
     @review = Review.new
@@ -26,7 +27,7 @@ class Public::ReviewsController < ApplicationController
 
   def destroy
     review = Review.find(params[:id])
-    
+
     review.destroy
     redirect_back fallback_location: root_path, notice:'削除完了しました'
   end
@@ -34,6 +35,12 @@ class Public::ReviewsController < ApplicationController
 
 
   private
+
+  def user_check
+    unless review.user_id == current_user.id
+      redirect_to root_path, notice:'レビューは投稿者しか削除できません'
+    end
+  end
 
 
   def review_params

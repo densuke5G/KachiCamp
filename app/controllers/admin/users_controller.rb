@@ -17,7 +17,7 @@ class Admin::UsersController < ApplicationController
       # ユーザーの退会処理時、レビューを削除
       @user.reviews.destroy_all
       flash[:notice] = "編集完了しました"
-      redirect_to admin_user_path(user)
+      redirect_to admin_user_path(@user)
     else
       render :show
     end
