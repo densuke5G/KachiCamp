@@ -137,7 +137,7 @@
             </div>
             <div class="col-sm-7 col-5 text-left px-0">
               <%= f.label :"(,で区切ると複数タグ登録できます)" %><br>
-              <%= f.text_field :tag_name, autofocus: true, placeholder: "直火OK,ソロキャンプ", class: "form-control" %>
+              <%= f.text_field :tag_name, autofocus: true, value: @tag_list, placeholder: "直火OK,ソロキャンプ", class: "form-control" %>
             </div>
           </div>
 

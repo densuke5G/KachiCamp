@@ -1,18 +1,18 @@
 class Public::CampgroundsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :search, :map, :show]
-  before_action :confirm_post, only: [:show]
+  before_action :detect_post, only: [:show]
 
   def new
     @campground = Campground.new
   end
 
   def index
-    @campgrounds = Campground.page(params[:page]).per(3)
+    @campgrounds = Campground.where(is_confirmed: 1).page(params[:page]).per(3)
   end
 
   def search
     @q = Campground.ransack(params[:q])
-    @campgrounds = @q.result(distinct: true).page(params[:page]).per(3)
+    @campgrounds = @q.result(distinct: true).where(is_confirmed: 1).page(params[:page]).per(3)
   end
 
   def map
@@ -53,7 +53,7 @@ class Public::CampgroundsController < ApplicationController
 
 
   # 非公開の投稿がURL直打ちで見られることを防ぐ
-  def confirm_post
+  def detect_post
     campground = Campground.find(params[:id])
     unless campground.confirmed?
       redirect_to root_path, notice:'非公開の投稿は閲覧できません'
