@@ -33,11 +33,11 @@
              <!--レビューをAPIの分析結果によって色分けして表示-->
             <% if review.score.present? %>
               <% if review.score < -0.5 %>
-                <span class="btn btn-danger m-2"><%= review.score %>悪感情</span>
+                <span class="btn btn-danger rounded-pill w-50 m-auto mt-2"><%= review.score %>悪感情</span>
               <% elsif review.score > 0.5 %>
-                <span class="btn btn-success m-2"><%= review.score %>良感情</span>
+                <span class="btn btn-success rounded-pill w-50 m-auto mt-2"><%= review.score %>良感情</span>
               <% else %>
-                <span class="btn btn-info m-2"><%= review.score %>普感情</span>
+                <span class="btn btn-info rounded-pill w-50 m-auto mt-2"><%= review.score %>普感情</span>
               <% end %>
             <% end %>
             <%= link_to "レビューを削除する", admin_review_path(review.id), method: :delete, class: "btn btn_orange rounded-pill w-50 m-auto mt-2" %>
