@@ -20,7 +20,7 @@
             <p>本文</p>
           </div>
           <div class="col-sm-7 col-5 text-left px-0">
-            <%= f.text_area :body, autofocus: true, rows: "4", class: "form-control" %>
+            <%= f.text_area :body, id: "result-div", autofocus: true, rows: "4", class: "form-control" %>
           </div>
         </div>
 
@@ -50,8 +50,40 @@
         };
         raty(elem, opt);
 
+        // Web speech APIを用いた音声入力
+        window.addEventListener('load', function(){
+        const startBtn = document.querySelector('#start-btn');
+        const resultDiv = document.getElementById("result-div");
+        const stopBtn = document.querySelector('#stop-btn');
+
+        SpeechRecognition = webkitSpeechRecognition || SpeechRecognition;
+        let recognition = new SpeechRecognition();
+        recognition.lang = 'ja-JP';
+        recognition.interimResults = true;
+        recognition.continuous = true;
+        recognition.onresult = (event) => {
+          console.log(event);
+          const interimTranscript = event.results[0][0].transcript;
+
+          resultDiv.value =  interimTranscript ;
+        }
+        startBtn.addEventListener('click', function(){
+         recognition.start();
+        })
+
+        stopBtn.addEventListener('click', function(){
+         recognition.stop();
+        })
+
+        })
+
         </script>
       <% end %>
+    </div>
+    <div class="col-sm-3 col-5 text-left pl-2">
+      <p class="mt-3">音声認識で入力できます<br>（chromeのみ対応）</p>
+      <button id="start-btn", class= "btn btn_water my-2", style="height: 50px; width: 100px;">start</button>
+      <button id="stop-btn", class= "btn btn_orange my-2", style="height: 50px; width: 100px;">stop</button>
     </div>
   </div>
 </div>
